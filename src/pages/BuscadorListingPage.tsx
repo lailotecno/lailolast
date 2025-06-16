@@ -259,7 +259,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
               <div className={
                 viewMode === 'horizontal'
                   ? 'space-y-3 md:space-y-4 w-full'
-                  : 'grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4 w-full'
+                  : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4 w-full'
               }>
                 {currentAuctions.map((auction) => (
                   <AuctionCard

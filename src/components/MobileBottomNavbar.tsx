@@ -49,9 +49,6 @@ export const MobileBottomNavbar: React.FC = () => {
                 }`}
               >
                 <Icon className="w-5 h-5" />
-                {isActive && (
-                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full"></div>
-                )}
               </button>
             );
           })}
