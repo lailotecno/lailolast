@@ -88,43 +88,41 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
 
   return (
     <div className="flex flex-col h-screen pb-20 md:pb-0 md:pl-20 overflow-x-hidden">
-      {/* Type Navigation Tabs with View Toggle - Desktop Only */}
-      <div className="hidden lg:block">
-        <div className="bg-white border-b border-gray-100">
-          <div className="px-4 md:px-8">
-            <div className="flex items-center">
-              <div className="flex-1">
-                <TypeNavigationTabs category={category} />
-              </div>
-              
-              {/* Divider */}
-              <div className="h-8 w-px bg-gray-200 mx-4"></div>
-              
-              {/* View Toggle */}
-              <div className="flex bg-gray-100 rounded-lg p-1 flex-shrink-0">
-                <button
-                  onClick={() => setViewMode('horizontal')}
-                  className={`p-2 rounded-md transition-colors ${
-                    viewMode === 'horizontal'
-                      ? 'bg-white text-blue-600 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                  title="Visualização horizontal"
-                >
-                  <LayoutList className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => setViewMode('vertical')}
-                  className={`p-2 rounded-md transition-colors ${
-                    viewMode === 'vertical'
-                      ? 'bg-white text-blue-600 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                  title="Visualização em grade"
-                >
-                  <Grid3x3 className="w-4 h-4" />
-                </button>
-              </div>
+      {/* Type Navigation Tabs with View Toggle - Desktop Only - Always Visible */}
+      <div className="hidden lg:block bg-white border-b border-gray-100">
+        <div className="px-4 md:px-6">
+          <div className="flex items-center">
+            <div className="flex-1">
+              <TypeNavigationTabs category={category} />
+            </div>
+            
+            {/* Divider */}
+            <div className="h-8 w-px bg-gray-200 mx-4"></div>
+            
+            {/* View Toggle */}
+            <div className="flex bg-gray-100 rounded-lg p-1 flex-shrink-0">
+              <button
+                onClick={() => setViewMode('horizontal')}
+                className={`p-2 rounded-md transition-colors ${
+                  viewMode === 'horizontal'
+                    ? 'bg-white text-blue-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                title="Visualização horizontal"
+              >
+                <LayoutList className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('vertical')}
+                className={`p-2 rounded-md transition-colors ${
+                  viewMode === 'vertical'
+                    ? 'bg-white text-blue-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                title="Visualização em grade"
+              >
+                <Grid3x3 className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
@@ -211,8 +209,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
       </div>
 
       <div className="flex flex-1 min-h-0 overflow-x-hidden">
-        {/* Desktop Sidebar - Fixed height with internal scroll */}
-        <div className="hidden lg:block w-[30%] max-w-sm flex-shrink-0">
+        {/* Desktop Sidebar - Increased width */}
+        <div className="hidden lg:block w-[35%] max-w-md flex-shrink-0">
           <FilterSidebar category={category} />
         </div>
 
