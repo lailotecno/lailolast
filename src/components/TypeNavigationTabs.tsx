@@ -161,26 +161,28 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
     <div className="w-full">
       {/* Desktop version - SEMPRE VISÍVEL a partir de 768px */}
       <div className="hidden min-[768px]:block">
-        <div className="flex items-center relative">
-          {/* Container wrapper com overflow-hidden para cortar as tabs */}
-          <div className="flex-1 overflow-hidden">
-            {/* Container das tabs com scroll - agora com padding à direita para os botões */}
-            <div 
-              ref={tabsContainerRef}
-              className="flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 pr-[96px]"
-            >
-              {tabs.map((tab) => (
-                <TabButton
-                  key={tab.id}
-                  tab={tab}
-                  isActive={currentType === tab.id}
-                />
-              ))}
-            </div>
+        <div className="relative w-full">
+          {/* Container das tabs com scroll - POSIÇÃO ABSOLUTA para não empurrar os botões */}
+          <div 
+            ref={tabsContainerRef}
+            className="absolute inset-0 flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2"
+            style={{
+              /* Máscara CSS para esconder o conteúdo que transborda à direita */
+              maskImage: 'linear-gradient(to right, black 0%, black calc(100% - 100px), transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to right, black 0%, black calc(100% - 100px), transparent 100%)'
+            }}
+          >
+            {tabs.map((tab) => (
+              <TabButton
+                key={tab.id}
+                tab={tab}
+                isActive={currentType === tab.id}
+              />
+            ))}
           </div>
           
-          {/* Botões de scroll - posicionados absolutamente para não serem empurrados */}
-          <div className="absolute right-0 top-0 bottom-0 flex items-center gap-1 pl-4 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10">
+          {/* Botões de scroll - POSIÇÃO ABSOLUTA FIXA no canto direito */}
+          <div className="absolute top-0 right-0 bottom-0 w-24 flex items-center justify-end gap-1 bg-gradient-to-l from-white via-white/95 to-transparent z-20 pr-2">
             <button
               onClick={handleScrollLeft}
               className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
@@ -196,6 +198,9 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
               <ChevronRight className="w-4 h-4 text-gray-600" />
             </button>
           </div>
+          
+          {/* Espaçador para manter a altura do container */}
+          <div className="h-16 w-full"></div>
         </div>
       </div>
 
