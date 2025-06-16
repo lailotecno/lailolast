@@ -75,7 +75,7 @@ export function AuctionCardHorizontalVehicle({
                 <span className="font-medium">{year}</span>
                 <span className="text-gray-300">•</span>
                 <span className="truncate">{cityState.split('/')[0]}</span>
-                <span className="text-gray-300">•</span>
+                <span className="text-gray-600">-</span>
                 <span className="flex-shrink-0">{cityState.split('/')[1]}</span>
               </div>
 
