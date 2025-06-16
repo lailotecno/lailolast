@@ -89,7 +89,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
   return (
     <div className="flex flex-col h-screen pb-20 md:pb-0 md:pl-20 overflow-x-hidden">
       {/* Type Navigation Tabs with View Toggle - Desktop Only - Always Visible */}
-      <div className="hidden lg:block bg-white border-b border-gray-100">
+      <div className="hidden lg:block bg-white border-b border-gray-100 sticky top-0 z-30">
         <div className="px-4 md:px-6">
           <div className="flex items-center">
             <div className="flex-1">
