@@ -91,7 +91,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
       {/* Type Navigation Tabs with View Toggle - Desktop Only */}
       <div className="hidden lg:block">
         <div className="bg-white border-b border-gray-100">
-          <div className="w-full px-4 md:px-8">
+          <div className="px-4 md:px-8">
             <div className="flex items-center">
               <div className="flex-1">
                 <TypeNavigationTabs category={category} />
@@ -212,7 +212,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
 
       <div className="flex flex-1 min-h-0 overflow-x-hidden">
         {/* Desktop Sidebar - Fixed height with internal scroll */}
-        <div className="hidden lg:block w-[35%] max-w-md flex-shrink-0">
+        <div className="hidden lg:block w-[30%] max-w-sm flex-shrink-0">
           <FilterSidebar category={category} />
         </div>
 
@@ -221,13 +221,15 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
           {/* Scrollable Content Area */}
           <div className="flex-1 overflow-y-auto overflow-x-hidden pt-16 lg:pt-0">
             {/* Mobile Type Navigation Tabs - Inside scrollable area */}
-            <div className="lg:hidden overflow-x-hidden">
-              <TypeNavigationTabs category={category} />
+            <div className="lg:hidden overflow-x-hidden bg-white border-b border-gray-100">
+              <div className="px-4">
+                <TypeNavigationTabs category={category} />
+              </div>
             </div>
             
-            <main className="w-full px-4 md:px-8 overflow-x-hidden">
+            <main className="w-full px-4 md:px-6 overflow-x-hidden">
               {/* Header with status and desktop sort control */}
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between py-4 gap-4 w-full">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between py-4 gap-3 w-full">
                 <div className="min-w-0 flex-1">
                   <p className="text-gray-600 text-sm break-words">
                     Encontramos <span className="font-semibold text-blue-600">{allAuctions.length}</span> leilões em <span className="font-semibold text-blue-600">8</span> sites • <span className="font-semibold text-blue-600">{allAuctions.filter(auction => auction.isNew).length}</span> novos hoje
@@ -239,7 +241,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
                   <div className="relative">
                     <button
                       onClick={() => setShowSortPopover(!showSortPopover)}
-                      className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap"
+                      className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap"
                     >
                       <span>{getSortLabel(selectedSort)}</span>
                       <ChevronDown className="w-4 h-4" />
@@ -258,8 +260,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
               {/* Auction Cards */}
               <div className={
                 viewMode === 'horizontal'
-                  ? 'space-y-3 md:space-y-4 w-full'
-                  : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4 w-full'
+                  ? 'space-y-3 w-full'
+                  : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 w-full'
               }>
                 {currentAuctions.map((auction) => (
                   <AuctionCard
@@ -271,7 +273,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
               </div>
 
               {/* Pagination */}
-              <div className="mt-8 md:mt-12 mb-8 w-full overflow-x-auto">
+              <div className="mt-8 mb-8 w-full overflow-x-auto">
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}

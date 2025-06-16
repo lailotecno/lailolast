@@ -133,16 +133,16 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
     );
   }
 
-  // Desktop version - Now properly aligned with status text
+  // Desktop version - Compact for notebook screens
   return (
     <div className="relative w-full h-full bg-white border-r border-gray-200">
-      {/* Header - Aligned with status text (32px from top) */}
-      <div className="absolute top-8 left-0 right-0 p-4 border-b border-gray-200 bg-white z-10">
-        <h2 className="text-lg md:text-base font-semibold text-gray-900">Filtros</h2>
+      {/* Header - Compact spacing */}
+      <div className="absolute top-4 left-0 right-0 px-4 py-3 border-b border-gray-200 bg-white z-10">
+        <h2 className="text-base font-semibold text-gray-900">Filtros</h2>
       </div>
 
-      {/* Filters content - Scrollable area with proper spacing */}
-      <div className="absolute top-24 bottom-20 left-0 right-0 overflow-y-auto p-4 scrollbar-hide">
+      {/* Filters content - Compact spacing */}
+      <div className="absolute top-16 bottom-16 left-0 right-0 overflow-y-auto px-4 py-3 scrollbar-hide">
         {category === 'imoveis' ? (
           <ImoveisFilters
             filters={imoveisFilters}
@@ -156,18 +156,18 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         )}
       </div>
 
-      {/* Footer - Fixed at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white z-10">
-        <div className="flex gap-3">
+      {/* Footer - Compact */}
+      <div className="absolute bottom-0 left-0 right-0 px-4 py-3 border-t border-gray-200 bg-white z-10">
+        <div className="flex gap-2">
           <button 
             onClick={handleClearFilters}
-            className="flex-1 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+            className="flex-1 px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
           >
             Apagar
           </button>
           <button 
             onClick={handleApplyFilters}
-            className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            className="flex-1 px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
           >
             Aplicar
           </button>

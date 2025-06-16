@@ -128,13 +128,13 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
   const isVendaDireta = filters.formato === "venda-direta"
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Localização */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-3">
           Localização
         </label>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 gap-2">
           <ComboBoxSearch
             options={estados}
             value={filters.estado}
@@ -160,10 +160,10 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
 
       {/* Marca e Modelo */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-3">
           Marca e Modelo
         </label>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 gap-2">
           <ComboBoxSearch
             options={marcas}
             value={filters.marca}
@@ -189,7 +189,7 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
 
       {/* Cor */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-3">
           Cor
         </label>
         <Select value={filters.cor} onValueChange={(value) => onFiltersChange({ cor: value })}>
@@ -208,7 +208,7 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
 
       {/* Ano */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-3">
           Ano
         </label>
         <RangeSlider
@@ -222,7 +222,7 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
 
       {/* Faixa de preço */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-3">
           Faixa de preço
         </label>
         <RangeSlider
@@ -243,7 +243,7 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
 
       {/* Origem */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-3">
           Origem
         </label>
         <MultiToggleGrid
@@ -255,7 +255,7 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
 
       {/* Etapa */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-3">
           Etapa
         </label>
         <MultiToggleGrid
@@ -265,7 +265,7 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
           disabled={isVendaDireta}
         />
         {/* Espaço reservado para mensagem condicional para evitar layout shift */}
-        <div className="min-h-[20px] mt-2">
+        <div className="min-h-[16px] mt-2">
           {isVendaDireta && (
             <p className="text-xs text-gray-500">
               Etapas não se aplicam à venda direta
