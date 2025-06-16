@@ -167,7 +167,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
             {/* Container das tabs com scroll - agora com padding à direita para os botões */}
             <div 
               ref={tabsContainerRef}
-              className="flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 pr-[80px]"
+              className="flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 pr-[96px]"
             >
               {tabs.map((tab) => (
                 <TabButton
