@@ -35,6 +35,11 @@ export function AuctionCardHorizontalVehicle({
   discount,
   isNew,
 }: AuctionCardHorizontalVehicleProps) {
+  // Formatar cidade e estado: "São Paulo/SP" -> "São Paulo, SP"
+  const formatCityState = (location: string) => {
+    return location.replace('/', ', ');
+  };
+
   return (
     <div className="group w-full bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg hover:border-gray-200 transition-all duration-300 p-3 md:p-4 cursor-pointer">
       <div className="flex gap-3 md:gap-4 mb-3">
@@ -74,9 +79,7 @@ export function AuctionCardHorizontalVehicle({
                 <span className="text-gray-300">•</span>
                 <span className="font-medium">{year}</span>
                 <span className="text-gray-300">•</span>
-                <span className="truncate">{cityState.split('/')[0]}</span>
-                <span className="text-gray-600">-</span>
-                <span className="flex-shrink-0">{cityState.split('/')[1]}</span>
+                <span className="truncate">{formatCityState(cityState)}</span>
               </div>
 
               <div className="flex items-baseline gap-1.5">
