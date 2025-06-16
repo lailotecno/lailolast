@@ -15,7 +15,9 @@ import {
   Mountain, 
   Building2, 
   HelpCircle,
-  MoreHorizontal
+  MoreHorizontal,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { Category } from '../types/auction';
 import { 
@@ -43,7 +45,8 @@ interface TabItem {
 export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category }) => {
   const navigate = useNavigate();
   const { tipo } = useParams<{ tipo: string }>();
-  const [showScrollButton, setShowScrollButton] = useState(false);
+  const [showScrollLeftButton, setShowScrollLeftButton] = useState(false);
+  const [showScrollRightButton, setShowScrollRightButton] = useState(false);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
 
   // Normalizar e validar o tipo atual
@@ -117,21 +120,32 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
     }
   }, [category]); // Dependência apenas da category
 
-  // Função para rolar horizontalmente
+  // Funções para rolar horizontalmente
+  const handleScrollLeft = () => {
+    if (tabsContainerRef.current) {
+      tabsContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+    }
+  };
+
   const handleScrollRight = () => {
     if (tabsContainerRef.current) {
       tabsContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
     }
   };
 
-  // Verificar se precisa mostrar o botão de scroll
+  // Verificar se precisa mostrar os botões de scroll
   useEffect(() => {
     const checkOverflow = () => {
       if (!tabsContainerRef.current) return;
       
       const container = tabsContainerRef.current;
-      const hasOverflow = container.scrollWidth > container.clientWidth;
-      setShowScrollButton(hasOverflow);
+      const { scrollLeft, scrollWidth, clientWidth } = container;
+      
+      // Mostrar botão esquerdo se não estiver no início
+      setShowScrollLeftButton(scrollLeft > 0);
+      
+      // Mostrar botão direito se houver conteúdo não visível à direita
+      setShowScrollRightButton(scrollLeft + clientWidth < scrollWidth);
     };
 
     checkOverflow();
@@ -140,8 +154,17 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
       checkOverflow();
     };
 
+    const handleScroll = () => {
+      checkOverflow();
+    };
+
     window.addEventListener('resize', handleResize);
     
+    // Adicionar listener de scroll ao container
+    if (tabsContainerRef.current) {
+      tabsContainerRef.current.addEventListener('scroll', handleScroll);
+    }
+
     // Observer para mudanças no conteúdo
     const observer = new MutationObserver(checkOverflow);
     if (tabsContainerRef.current) {
@@ -154,6 +177,9 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      if (tabsContainerRef.current) {
+        tabsContainerRef.current.removeEventListener('scroll', handleScroll);
+      }
       observer.disconnect();
     };
   }, [tabs]);
@@ -187,10 +213,26 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
     <div className="bg-white border-b border-gray-100">
       <div className="w-full px-4 md:px-8">
         <div className="hidden md:block">
-          <div className="flex items-center justify-between relative">
+          <div className="flex items-center relative">
+            {/* Botão de scroll para a esquerda */}
+            {showScrollLeftButton && (
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white via-white to-transparent pl-0 pr-4 py-2 z-10">
+                <button
+                  onClick={handleScrollLeft}
+                  className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
+                  title="Rolar para a esquerda"
+                >
+                  <ChevronLeft className="w-5 h-5 text-gray-600" />
+                </button>
+              </div>
+            )}
+            
+            {/* Container das tabs com scroll */}
             <div 
               ref={tabsContainerRef}
-              className="flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 flex-1"
+              className={`flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 flex-1 ${
+                showScrollLeftButton ? 'pl-16' : ''
+              } ${showScrollRightButton ? 'pr-16' : ''}`}
             >
               {tabs.map((tab) => (
                 <TabButton
@@ -201,15 +243,15 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
               ))}
             </div>
             
-            {/* Botão "Mais" circular inspirado no Airbnb - só aparece quando necessário */}
-            {showScrollButton && (
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm pr-4 pl-2 py-2 rounded-l-full shadow-md">
+            {/* Botão de scroll para a direita */}
+            {showScrollRightButton && (
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white via-white to-transparent pr-0 pl-4 py-2 z-10">
                 <button
                   onClick={handleScrollRight}
-                  className="w-12 h-12 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
-                  title="Ver mais tipos"
+                  className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
+                  title="Rolar para a direita"
                 >
-                  <MoreHorizontal className="w-5 h-5 text-gray-600" />
+                  <ChevronRight className="w-5 h-5 text-gray-600" />
                 </button>
               </div>
             )}
