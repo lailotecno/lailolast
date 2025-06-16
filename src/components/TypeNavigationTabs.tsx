@@ -161,23 +161,26 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
     <div className="w-full">
       {/* Desktop version - SEMPRE VISÍVEL a partir de 768px */}
       <div className="hidden min-[768px]:block">
-        <div className="flex items-center relative overflow-hidden">
-          {/* Container das tabs com scroll - agora com padding à direita para os botões */}
-          <div 
-            ref={tabsContainerRef}
-            className="flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 flex-grow flex-shrink-0 min-w-0 pr-[80px]"
-          >
-            {tabs.map((tab) => (
-              <TabButton
-                key={tab.id}
-                tab={tab}
-                isActive={currentType === tab.id}
-              />
-            ))}
+        <div className="flex items-center relative">
+          {/* Container wrapper com overflow-hidden para cortar as tabs */}
+          <div className="flex-1 overflow-hidden">
+            {/* Container das tabs com scroll - agora com padding à direita para os botões */}
+            <div 
+              ref={tabsContainerRef}
+              className="flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 pr-[80px]"
+            >
+              {tabs.map((tab) => (
+                <TabButton
+                  key={tab.id}
+                  tab={tab}
+                  isActive={currentType === tab.id}
+                />
+              ))}
+            </div>
           </div>
           
           {/* Botões de scroll - posicionados absolutamente para não serem empurrados */}
-          <div className="absolute right-0 top-0 bottom-0 flex items-center gap-1 pl-4 w-20 bg-gradient-to-l from-white via-white/80 to-transparent">
+          <div className="absolute right-0 top-0 bottom-0 flex items-center gap-1 pl-4 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10">
             <button
               onClick={handleScrollLeft}
               className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
