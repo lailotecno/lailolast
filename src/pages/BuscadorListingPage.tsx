@@ -217,8 +217,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
       </div>
 
       <div className="flex flex-1 min-h-0 overflow-x-hidden">
-        {/* Desktop Sidebar - Visible from 768px+ */}
-        <div className="hidden min-[768px]:block w-[35%] max-w-md flex-shrink-0">
+        {/* Desktop Sidebar - Fixed width for better layout */}
+        <div className="hidden min-[768px]:block w-80 flex-shrink-0">
           <FilterSidebar category={category} />
         </div>
 
@@ -235,7 +235,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
             
             <main className="w-full px-4 md:px-6 overflow-x-hidden">
               {/* Header with status and desktop sort control */}
-              <div className="flex flex-col min-[768px]:flex-row min-[768px]:items-center min-[768px]:justify-between py-4 gap-3 w-full">
+              <div className="flex flex-col min-[768px]:flex-row min-[768px]:items-center min-[768px]:justify-between py-6 gap-3 w-full">
                 <div className="min-w-0 flex-1">
                   <p className="text-gray-600 text-sm break-words">
                     Encontramos <span className="font-semibold text-blue-600">{allAuctions.length}</span> leilões em <span className="font-semibold text-blue-600">8</span> sites • <span className="font-semibold text-blue-600">{allAuctions.filter(auction => auction.isNew).length}</span> novos hoje
@@ -247,7 +247,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
                   <div className="relative">
                     <button
                       onClick={() => setShowSortPopover(!showSortPopover)}
-                      className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap"
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap shadow-sm"
                     >
                       <span>{getSortLabel(selectedSort)}</span>
                       <ChevronDown className="w-4 h-4" />
@@ -266,8 +266,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
               {/* Auction Cards */}
               <div className={
                 viewMode === 'horizontal'
-                  ? 'space-y-3 w-full'
-                  : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 w-full'
+                  ? 'space-y-4 w-full'
+                  : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full'
               }>
                 {currentAuctions.map((auction) => (
                   <AuctionCard
@@ -279,7 +279,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
               </div>
 
               {/* Pagination */}
-              <div className="mt-8 mb-8 w-full overflow-x-auto">
+              <div className="mt-12 mb-8 w-full overflow-x-auto">
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}
