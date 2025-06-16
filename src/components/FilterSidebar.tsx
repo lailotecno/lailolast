@@ -140,12 +140,12 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   return (
     <div className="relative w-full h-full bg-white border-r border-gray-200">
       {/* Header - Compact spacing */}
-      <div className="absolute top-4 left-0 right-0 px-4 py-3 border-b border-gray-200 bg-white z-10">
+      <div className="absolute top-4 left-0 right-0 px-4 md:px-6 py-3 border-b border-gray-200 bg-white z-10">
         <h2 className="text-base font-semibold text-gray-900">Filtros</h2>
       </div>
 
       {/* Filters content - Compact spacing */}
-      <div className="absolute top-16 bottom-16 left-0 right-0 overflow-y-auto px-4 py-3 scrollbar-hide">
+      <div className="absolute top-16 bottom-16 left-0 right-0 overflow-y-auto px-4 md:px-6 py-3 scrollbar-hide">
         {category === 'imoveis' ? (
           <ImoveisFilters
             filters={imoveisFilters}
@@ -161,7 +161,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
       </div>
 
       {/* Footer - Compact */}
-      <div className="absolute bottom-0 left-0 right-0 px-4 py-3 border-t border-gray-200 bg-white z-10">
+      <div className="absolute bottom-0 left-0 right-0 px-4 md:px-6 py-3 border-t border-gray-200 bg-white z-10">
         <div className="flex gap-2">
           <button 
             onClick={handleClearFilters}
