@@ -49,11 +49,12 @@ export function AuctionCardHorizontalVehicle({
             alt={`${brand} ${model}`}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
-          {isNew && (
-            <div className="absolute top-1.5 left-1.5 md:top-2 md:left-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-[10px] font-bold uppercase px-1.5 py-0.5 md:px-2 md:py-0.5 rounded-md shadow-sm">
-              Novo
-            </div>
-          )}
+          {/* Badge "Novo" sempre presente no DOM, mas controlado por visibilidade */}
+          <div className={`absolute top-1.5 left-1.5 md:top-2 md:left-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-[10px] font-bold uppercase px-1.5 py-0.5 md:px-2 md:py-0.5 rounded-md shadow-sm transition-opacity duration-200 ${
+            isNew ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}>
+            Novo
+          </div>
         </div>
 
         <div className="flex-1 space-y-1 min-w-0">

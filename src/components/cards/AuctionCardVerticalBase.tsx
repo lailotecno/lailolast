@@ -41,11 +41,12 @@ export function AuctionCardVerticalBase({
           alt={titleLeft}
           className="w-full aspect-[16/9] object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        {isNew && (
-          <div className="absolute top-3 left-3 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-lg shadow-sm">
-            Novo
-          </div>
-        )}
+        {/* Badge "Novo" sempre presente no DOM, mas controlado por visibilidade */}
+        <div className={`absolute top-3 left-3 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-lg shadow-sm transition-opacity duration-200 ${
+          isNew ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}>
+          Novo
+        </div>
         {onToggleFavorite && (
           <button
             onClick={(e) => {
