@@ -48,8 +48,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
   const currentType = getCurrentType();
   const allAuctions = getAuctionsByCategory(category, currentType);
   
-  // Calculate pagination
-  const totalPages = Math.ceil(allAuctions.length / ITEMS_PER_PAGE);
+  // Calculate pagination - SEMPRE calcular mesmo que seja 1 página
+  const totalPages = Math.max(1, Math.ceil(allAuctions.length / ITEMS_PER_PAGE));
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentAuctions = allAuctions.slice(startIndex, endIndex);
@@ -278,7 +278,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
                 ))}
               </div>
 
-              {/* Pagination */}
+              {/* Pagination - SEMPRE RENDERIZAR */}
               <div className="mt-8 mb-8 w-full overflow-x-auto">
                 <Pagination
                   currentPage={currentPage}
