@@ -41,7 +41,7 @@ export function AuctionCardVerticalVehicle({
         <img
           src={imageUrl}
           alt={`${brand} ${model}`}
-          className="w-full aspect-[21/9] object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full aspect-[16/9] object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {isNew && (
           <div className="absolute top-3 left-3 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-lg shadow-sm">
