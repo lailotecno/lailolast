@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { 
   Car, 
@@ -69,7 +69,8 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
     }
   }, [tipo, currentType, category, navigate]);
 
-  const getTabsData = (): TabItem[] => {
+  // Usar useMemo para estabilizar o array de tabs e evitar recriações desnecessárias
+  const tabs = useMemo((): TabItem[] => {
     if (category === 'veiculos') {
       const vehicleIcons: Record<VehicleType, React.ComponentType<{ className?: string }>> = {
         'todos': MoreHorizontal,
@@ -117,9 +118,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
         route: `/buscador/imoveis/${type}`
       }));
     }
-  };
-
-  const tabs = getTabsData();
+  }, [category]); // Dependência apenas da category
 
   useEffect(() => {
     const calculateVisibleTabs = () => {
