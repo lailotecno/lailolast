@@ -45,8 +45,14 @@ interface TabItem {
 export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category }) => {
   const navigate = useNavigate();
   const { tipo } = useParams<{ tipo: string }>();
-  const [showScrollLeftButton, setShowScrollLeftButton] = useState(false);
-  const [showScrollRightButton, setShowScrollRightButton] = useState(false);
+  
+  // Estados para controlar a visibilidade dos botões com atraso
+  const [showLeftButton, setShowLeftButton] = useState(false);
+  const [showRightButton, setShowRightButton] = useState(false);
+  
+  // Refs para armazenar os timeouts
+  const leftScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const rightScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
 
   // Normalizar e validar o tipo atual
@@ -133,7 +139,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
     }
   };
 
-  // Verificar se precisa mostrar os botões de scroll
+  // Verificar se precisa mostrar os botões de scroll com atraso no desaparecimento
   useEffect(() => {
     const checkOverflow = () => {
       if (!tabsContainerRef.current) return;
@@ -141,11 +147,51 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
       const container = tabsContainerRef.current;
       const { scrollLeft, scrollWidth, clientWidth } = container;
       
-      // Mostrar botão esquerdo se não estiver no início
-      setShowScrollLeftButton(scrollLeft > 0);
+      // Determinar se os botões devem ser visíveis
+      const shouldShowLeft = scrollLeft > 0;
+      const shouldShowRight = scrollLeft + clientWidth < scrollWidth;
       
-      // Mostrar botão direito se houver conteúdo não visível à direita
-      setShowScrollRightButton(scrollLeft + clientWidth < scrollWidth);
+      // Gerenciar botão esquerdo
+      if (shouldShowLeft) {
+        // Limpar timeout pendente e mostrar imediatamente
+        if (leftScrollTimeoutRef.current) {
+          clearTimeout(leftScrollTimeoutRef.current);
+          leftScrollTimeoutRef.current = null;
+        }
+        setShowLeftButton(true);
+      } else {
+        // Se deve esconder e está atualmente visível, iniciar timeout
+        if (showLeftButton) {
+          if (leftScrollTimeoutRef.current) {
+            clearTimeout(leftScrollTimeoutRef.current);
+          }
+          leftScrollTimeoutRef.current = setTimeout(() => {
+            setShowLeftButton(false);
+            leftScrollTimeoutRef.current = null;
+          }, 500); // 500ms de atraso
+        }
+      }
+      
+      // Gerenciar botão direito
+      if (shouldShowRight) {
+        // Limpar timeout pendente e mostrar imediatamente
+        if (rightScrollTimeoutRef.current) {
+          clearTimeout(rightScrollTimeoutRef.current);
+          rightScrollTimeoutRef.current = null;
+        }
+        setShowRightButton(true);
+      } else {
+        // Se deve esconder e está atualmente visível, iniciar timeout
+        if (showRightButton) {
+          if (rightScrollTimeoutRef.current) {
+            clearTimeout(rightScrollTimeoutRef.current);
+          }
+          rightScrollTimeoutRef.current = setTimeout(() => {
+            setShowRightButton(false);
+            rightScrollTimeoutRef.current = null;
+          }, 500); // 500ms de atraso
+        }
+      }
     };
 
     checkOverflow();
@@ -181,8 +227,16 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
         tabsContainerRef.current.removeEventListener('scroll', handleScroll);
       }
       observer.disconnect();
+      
+      // Limpar timeouts pendentes
+      if (leftScrollTimeoutRef.current) {
+        clearTimeout(leftScrollTimeoutRef.current);
+      }
+      if (rightScrollTimeoutRef.current) {
+        clearTimeout(rightScrollTimeoutRef.current);
+      }
     };
-  }, [tabs]);
+  }, [tabs, showLeftButton, showRightButton]);
 
   const handleTabClick = (route: string) => {
     navigate(route);
@@ -214,25 +268,25 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
       <div className="w-full px-4 md:px-8">
         <div className="hidden md:block">
           <div className="flex items-center relative">
-            {/* Botão de scroll para a esquerda */}
-            {showScrollLeftButton && (
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white via-white to-transparent pl-0 pr-4 py-2 z-10">
-                <button
-                  onClick={handleScrollLeft}
-                  className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
-                  title="Rolar para a esquerda"
-                >
-                  <ChevronLeft className="w-5 h-5 text-gray-600" />
-                </button>
-              </div>
-            )}
+            {/* Botão de scroll para a esquerda - sempre no DOM com fade */}
+            <div className={`absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white via-white to-transparent pl-0 pr-4 py-2 z-10 transition-opacity duration-300 ${
+              showLeftButton ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+            }`}>
+              <button
+                onClick={handleScrollLeft}
+                className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
+                title="Rolar para a esquerda"
+              >
+                <ChevronLeft className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
             
             {/* Container das tabs com scroll */}
             <div 
               ref={tabsContainerRef}
               className={`flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 flex-1 ${
-                showScrollLeftButton ? 'pl-16' : ''
-              } ${showScrollRightButton ? 'pr-16' : ''}`}
+                showLeftButton ? 'pl-16' : ''
+              } ${showRightButton ? 'pr-16' : ''}`}
             >
               {tabs.map((tab) => (
                 <TabButton
@@ -243,18 +297,18 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
               ))}
             </div>
             
-            {/* Botão de scroll para a direita */}
-            {showScrollRightButton && (
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white via-white to-transparent pr-0 pl-4 py-2 z-10">
-                <button
-                  onClick={handleScrollRight}
-                  className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
-                  title="Rolar para a direita"
-                >
-                  <ChevronRight className="w-5 h-5 text-gray-600" />
-                </button>
-              </div>
-            )}
+            {/* Botão de scroll para a direita - sempre no DOM com fade */}
+            <div className={`absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white via-white to-transparent pr-0 pl-4 py-2 z-10 transition-opacity duration-300 ${
+              showRightButton ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+            }`}>
+              <button
+                onClick={handleScrollRight}
+                className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
+                title="Rolar para a direita"
+              >
+                <ChevronRight className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
           </div>
         </div>
 
