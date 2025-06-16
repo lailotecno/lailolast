@@ -38,7 +38,6 @@ interface TypeNavigationTabsProps {
 interface TabItem {
   id: string;
   label: string;
-  icon: React.ComponentType<{ className?: string }>;
   route: string;
 }
 
@@ -71,49 +70,15 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
   // Usar useMemo para estabilizar o array de tabs e evitar recriações desnecessárias
   const tabs = useMemo((): TabItem[] => {
     if (category === 'veiculos') {
-      const vehicleIcons: Record<VehicleType, React.ComponentType<{ className?: string }>> = {
-        'todos': MoreHorizontal,
-        'carros': Car,
-        'motos': Bike,
-        'caminhoes': Truck,
-        'embarcacoes': Ship,
-        'maquinas': Wrench,
-        'onibus': Bus,
-        'reboques': Truck,
-        'recreativos': Car,
-        'sucata': Wrench,
-        'nao-informado': HelpCircle,
-      };
-
       return VEHICLE_TYPES.map(type => ({
         id: type,
         label: getVehicleTypeLabel(type),
-        icon: vehicleIcons[type],
         route: `/buscador/veiculos/${type}`
       }));
     } else {
-      const propertyIcons: Record<PropertyType, React.ComponentType<{ className?: string }>> = {
-        'todos': MoreHorizontal,
-        'apartamentos': Building,
-        'casas': Home,
-        'comerciais': Store,
-        'compactos': Building2,
-        'condominios': Building,
-        'galpoes': Warehouse,
-        'garagem': Car,
-        'hospedagem': Building,
-        'industriais': Warehouse,
-        'mistos': Building2,
-        'predios': Building,
-        'rurais': TreePine,
-        'terrenos': Mountain,
-        'nao-informado': HelpCircle,
-      };
-
       return PROPERTY_TYPES.map(type => ({
         id: type,
         label: getPropertyTypeLabel(type),
-        icon: propertyIcons[type],
         route: `/buscador/imoveis/${type}`
       }));
     }
@@ -137,22 +102,23 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
   };
 
   const TabButton: React.FC<{ tab: TabItem; isActive: boolean }> = ({ tab, isActive }) => {
-    const Icon = tab.icon;
-    
     return (
       <button
         onClick={() => handleTabClick(tab.route)}
-        className={`flex flex-col items-center justify-center min-w-[90px] px-4 py-3 text-sm font-medium transition-all duration-200 relative group ${
+        className={`flex flex-col items-center justify-center min-w-[80px] px-3 py-3 text-sm font-medium transition-all duration-200 relative group ${
           isActive
-            ? 'text-blue-600 border-b-2 border-blue-600'
-            : 'text-gray-600 hover:text-gray-900 border-b-2 border-transparent hover:bg-gray-50'
+            ? 'text-blue-600'
+            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
         }`}
         style={{ minHeight: '44px' }}
       >
-        <Icon className={`w-5 h-5 mb-1 transition-colors ${isActive ? 'text-blue-600' : 'text-gray-500 group-hover:text-gray-700'}`} />
         <span className={`text-xs leading-tight text-center whitespace-nowrap ${isActive ? 'font-semibold' : ''}`}>
           {tab.label}
         </span>
+        {/* Underline mais estreito */}
+        {isActive && (
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-blue-600 rounded-full"></div>
+        )}
       </button>
     );
   };
