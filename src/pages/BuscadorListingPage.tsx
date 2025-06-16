@@ -87,8 +87,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
   };
 
   return (
-    <div className="flex flex-col h-screen pb-20 md:pb-0 md:pl-20 overflow-x-hidden">
-      {/* Type Navigation Tabs with View Toggle - Desktop Only (768px+) - Always Visible */}
+    <div className="flex flex-col h-screen pb-20 max-[767px]:pb-20 min-[768px]:pb-0 md:pl-20 overflow-x-hidden">
+      {/* Desktop Header - Type Navigation Tabs with View Toggle - Always Visible (768px+) */}
       <div className="hidden min-[768px]:block bg-white border-b border-gray-100 sticky top-0 z-30">
         <div className="px-4 md:px-6">
           <div className="flex items-center">
@@ -128,7 +128,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
         </div>
       </div>
 
-      {/* Mobile Action Bar - Fixed at top with consistent height (below 768px) */}
+      {/* Mobile Action Bar - Fixed at top (below 768px only) */}
       <div className="min-[768px]:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-30 h-16">
         {showSearch ? (
           // Search Bar Mode
@@ -209,7 +209,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
       </div>
 
       <div className="flex flex-1 min-h-0 overflow-x-hidden">
-        {/* Desktop Sidebar - Increased width (768px+) */}
+        {/* Desktop Sidebar - Visible from 768px+ */}
         <div className="hidden min-[768px]:block w-[35%] max-w-md flex-shrink-0">
           <FilterSidebar category={category} />
         </div>
@@ -218,7 +218,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
         <div className="flex-1 flex flex-col min-h-0 min-w-0 overflow-x-hidden">
           {/* Scrollable Content Area */}
           <div className="flex-1 overflow-y-auto overflow-x-hidden pt-16 min-[768px]:pt-0">
-            {/* Mobile Type Navigation Tabs - Inside scrollable area (below 768px) */}
+            {/* Mobile Type Navigation Tabs - Inside scrollable area (below 768px only) */}
             <div className="min-[768px]:hidden overflow-x-hidden bg-white border-b border-gray-100">
               <div className="px-4">
                 <TypeNavigationTabs category={category} />
