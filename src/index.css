@@ -1,5 +1,5 @@
-@import 'geist/dist/geist.css';
-@import 'geist/dist/geist-mono.css';
+@import 'geist/font.css';
+@import 'geist/mono.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
