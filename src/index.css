@@ -6,7 +6,6 @@
 html, body {
   overflow-x: hidden;
   max-width: 100vw;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Hide scrollbar for mobile horizontal scroll and filter sidebar */

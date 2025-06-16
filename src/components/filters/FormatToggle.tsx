@@ -49,7 +49,7 @@ export const FormatToggle: React.FC<FormatToggleProps> = ({
                 disabled && "opacity-50 cursor-not-allowed"
               )}
             >
-              <div className="font-semibold text-sm">
+              <div className="font-medium text-sm">
                 {option.label}
               </div>
             </button>
