@@ -88,9 +88,46 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
 
   return (
     <div className="flex flex-col h-screen pb-20 md:pb-0 md:pl-20 overflow-x-hidden">
-      {/* Type Navigation Tabs - Now at the very top */}
+      {/* Type Navigation Tabs with View Toggle - Desktop Only */}
       <div className="hidden lg:block">
-        <TypeNavigationTabs category={category} />
+        <div className="bg-white border-b border-gray-100">
+          <div className="w-full px-4 md:px-8">
+            <div className="flex items-center justify-between">
+              <div className="flex-1">
+                <TypeNavigationTabs category={category} />
+              </div>
+              
+              {/* Divider */}
+              <div className="h-8 w-px bg-gray-200 mx-4"></div>
+              
+              {/* View Toggle */}
+              <div className="flex bg-gray-100 rounded-lg p-1 flex-shrink-0">
+                <button
+                  onClick={() => setViewMode('horizontal')}
+                  className={`p-2 rounded-md transition-colors ${
+                    viewMode === 'horizontal'
+                      ? 'bg-white text-blue-600 shadow-sm'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                  title="Visualização horizontal"
+                >
+                  <LayoutList className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setViewMode('vertical')}
+                  className={`p-2 rounded-md transition-colors ${
+                    viewMode === 'vertical'
+                      ? 'bg-white text-blue-600 shadow-sm'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                  title="Visualização em grade"
+                >
+                  <Grid3x3 className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Mobile Action Bar - Fixed at top with consistent height */}
@@ -188,20 +225,19 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
               <TypeNavigationTabs category={category} />
             </div>
             
-            <main className="w-full px-4 md:px-8 py-4 md:py-8 overflow-x-hidden">
-              {/* Header with status and desktop controls - Espaçamento de 12px */}
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-3 gap-4 w-full min-h-[60px]">
+            <main className="w-full px-4 md:px-8 overflow-x-hidden">
+              {/* Header with status and desktop sort control - Reduced padding */}
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between py-4 gap-4 w-full">
                 <div className="min-w-0 flex-1">
-                  <p className="text-gray-600 text-sm break-words min-h-[20px]">
+                  <p className="text-gray-600 text-sm break-words">
                     Encontramos <span className="font-semibold text-blue-600">{allAuctions.length}</span> leilões em <span className="font-semibold text-blue-600">8</span> sites • <span className="font-semibold text-blue-600">{allAuctions.filter(auction => auction.isNew).length}</span> novos hoje
                   </p>
                 </div>
                 
-                {/* Desktop Controls */}
-                <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
-                  {/* Sort Dropdown */}
-                  <div className="relative flex items-center gap-3">
-                    <span className="text-sm text-gray-700 whitespace-nowrap">Ordenar por:</span>
+                {/* Desktop Sort Control Only */}
+                <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+                  <span className="text-sm text-gray-700 whitespace-nowrap">Ordenar por:</span>
+                  <div className="relative">
                     <button
                       onClick={() => setShowSortPopover(!showSortPopover)}
                       className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap"
@@ -216,32 +252,6 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
                       selectedSort={selectedSort}
                       onSortChange={setSelectedSort}
                     />
-                  </div>
-
-                  {/* View Toggle */}
-                  <div className="flex bg-gray-100 rounded-lg p-1">
-                    <button
-                      onClick={() => setViewMode('horizontal')}
-                      className={`p-2 rounded-md transition-colors ${
-                        viewMode === 'horizontal'
-                          ? 'bg-white text-blue-600 shadow-sm'
-                          : 'text-gray-600 hover:text-gray-900'
-                      }`}
-                      title="Visualização horizontal"
-                    >
-                      <LayoutList className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => setViewMode('vertical')}
-                      className={`p-2 rounded-md transition-colors ${
-                        viewMode === 'vertical'
-                          ? 'bg-white text-blue-600 shadow-sm'
-                          : 'text-gray-600 hover:text-gray-900'
-                      }`}
-                      title="Visualização em grade"
-                    >
-                      <Grid3x3 className="w-4 h-4" />
-                    </button>
                   </div>
                 </div>
               </div>
