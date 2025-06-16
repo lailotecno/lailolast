@@ -159,7 +159,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
 
   return (
     <div className="w-full">
-      {/* Desktop version - Always visible (768px+) */}
+      {/* Desktop version - SEMPRE VISÍVEL a partir de 768px */}
       <div className="hidden min-[768px]:block">
         <div className="flex items-center relative">
           {/* Container das tabs com scroll */}
@@ -176,7 +176,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
             ))}
           </div>
           
-          {/* Botões de scroll no final - lado a lado e menores */}
+          {/* Botões de scroll SEMPRE VISÍVEIS - lado a lado */}
           <div className="flex items-center gap-1 ml-4 flex-shrink-0">
             <button
               onClick={handleScrollLeft}
@@ -196,8 +196,8 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
         </div>
       </div>
 
-      {/* Mobile version (below 768px) */}
-      <div className="min-[768px]:hidden">
+      {/* Mobile version - APENAS abaixo de 768px */}
+      <div className="max-[767px]:block min-[768px]:hidden">
         <div className="flex overflow-x-auto scrollbar-hide space-x-1 py-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {tabs.map((tab) => (
             <div key={tab.id} className="flex-shrink-0">
