@@ -67,7 +67,7 @@ export function AuctionCardVerticalVehicle({
         )}
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         {badge && (
           <span className="inline-block text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">
             {badge}
@@ -75,7 +75,7 @@ export function AuctionCardVerticalVehicle({
         )}
 
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
+          <div className="flex items-center gap-1.5 mb-1">
             <h3 className="text-lg md:text-base font-bold text-gray-900 flex-shrink-0">
               {brand}
             </h3>
@@ -84,7 +84,7 @@ export function AuctionCardVerticalVehicle({
             </span>
           </div>
           
-          <div className="flex items-center gap-2 text-sm md:text-xs text-gray-600 mb-3">
+          <div className="flex items-center gap-2 text-sm md:text-xs text-gray-600 mb-2">
             <span className="font-medium">{color}</span>
             <span className="text-gray-300">•</span>
             <span className="font-medium">{year}</span>
@@ -94,7 +94,7 @@ export function AuctionCardVerticalVehicle({
             <span className="flex-shrink-0">{cityState.split('/')[1]}</span>
           </div>
 
-          <div className="flex items-baseline gap-2 mb-4">
+          <div className="flex items-baseline gap-2 mb-3">
             <span className="text-xl md:text-lg font-bold text-gray-900">
               {price}
             </span>

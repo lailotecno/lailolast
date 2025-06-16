@@ -65,7 +65,7 @@ export function AuctionCardVerticalBase({
         )}
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         {badge && (
           <span className="inline-block text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">
             {badge}
@@ -73,7 +73,7 @@ export function AuctionCardVerticalBase({
         )}
 
         <div>
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-2 mb-1">
             <h3 className="text-lg md:text-base font-bold text-gray-900 flex-shrink-0">
               {titleLeft}
             </h3>
@@ -95,11 +95,11 @@ export function AuctionCardVerticalBase({
             )}
           </div>
           
-          <p className="text-sm md:text-xs text-gray-600 line-clamp-2 mb-3">
+          <p className="text-sm md:text-xs text-gray-600 line-clamp-2 mb-2">
             {subtitle}
           </p>
 
-          <div className="flex items-baseline gap-2 mb-4">
+          <div className="flex items-baseline gap-2 mb-3">
             <span className="text-xl md:text-lg font-bold text-gray-900">
               {price}
             </span>

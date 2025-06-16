@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid3x3, LayoutList, ChevronDown, SlidersHorizontal, ArrowUpDown, Search, X } from 'lucide-react';
 import { AuctionCard } from '../components/AuctionCard';
@@ -16,15 +16,23 @@ interface BuscadorListingPageProps {
 
 const ITEMS_PER_PAGE = 30;
 
+// Global state for view mode persistence
+let globalViewMode: ViewMode = 'horizontal';
+
 export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ category }) => {
   const { tipo } = useParams<{ tipo: string }>();
-  const [viewMode, setViewMode] = useState<ViewMode>('horizontal');
+  const [viewMode, setViewMode] = useState<ViewMode>(globalViewMode);
   const [showFilters, setShowFilters] = useState(false);
   const [showSortPopover, setShowSortPopover] = useState(false);
   const [selectedSort, setSelectedSort] = useState<SortOption>('newest');
   const [currentPage, setCurrentPage] = useState(1);
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Update global view mode when local state changes
+  useEffect(() => {
+    globalViewMode = viewMode;
+  }, [viewMode]);
 
   // Validar e normalizar o tipo
   const getCurrentType = (): string => {
