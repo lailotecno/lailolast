@@ -72,18 +72,15 @@ export function AuctionCardVerticalVehicle({
         )}
       </div>
 
-      <div className="space-y-3">
-        {/* Espaço reservado para badge - sempre ocupa espaço */}
-        <div className="min-h-[24px]">
-          {badge && (
-            <span className="inline-block text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">
-              {badge}
-            </span>
-          )}
-        </div>
+      <div className="space-y-1">
+        {badge && (
+          <span className="inline-block text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">
+            {badge}
+          </span>
+        )}
 
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
+          <div className="flex items-center gap-1.5 mb-0">
             <h3 className="text-lg md:text-base font-bold text-gray-900 flex-shrink-0">
               {brand}
             </h3>
@@ -92,18 +89,15 @@ export function AuctionCardVerticalVehicle({
             </span>
           </div>
           
-          {/* Informações do veículo com altura fixa */}
-          <div className="h-[20px] mb-3">
-            <div className="flex items-center gap-2 text-sm md:text-xs text-gray-600">
-              <span className="font-normal">{color}</span>
-              <span className="text-gray-300">•</span>
-              <span className="font-normal">{year}</span>
-              <span className="text-gray-300">•</span>
-              <span className="truncate font-normal">{formatCityState(cityState)}</span>
-            </div>
+          <div className="flex items-center gap-2 text-sm md:text-xs text-gray-600 mb-2">
+            <span className="font-normal">{color}</span>
+            <span className="text-gray-300">•</span>
+            <span className="font-normal">{year}</span>
+            <span className="text-gray-300">•</span>
+            <span className="truncate font-normal">{formatCityState(cityState)}</span>
           </div>
 
-          <div className="flex items-baseline gap-2 mb-4">
+          <div className="flex items-baseline gap-2 mb-3">
             <span className="text-xl md:text-lg font-bold text-gray-900">
               {price}
             </span>
@@ -117,8 +111,7 @@ export function AuctionCardVerticalVehicle({
 
         <div className="h-px bg-gray-100"></div>
 
-        {/* Footer com altura mínima fixa */}
-        <div className="flex items-center justify-between pt-1 min-h-[32px]">
+        <div className="flex items-center justify-between pt-1">
           <div className="flex flex-wrap gap-1.5">
             {tags && tags.slice(0, 2).map((tag, index) => (
               <span 

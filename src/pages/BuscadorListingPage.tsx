@@ -48,8 +48,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
   const currentType = getCurrentType();
   const allAuctions = getAuctionsByCategory(category, currentType);
   
-  // Calculate pagination - SEMPRE calcular mesmo que seja 1 página
-  const totalPages = Math.max(1, Math.ceil(allAuctions.length / ITEMS_PER_PAGE));
+  // Calculate pagination
+  const totalPages = Math.ceil(allAuctions.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentAuctions = allAuctions.slice(startIndex, endIndex);
@@ -224,8 +224,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col min-h-0 min-w-0 overflow-x-hidden">
-          {/* Scrollable Content Area - FORÇAR BARRA DE ROLAGEM SEMPRE VISÍVEL */}
-          <div className="flex-1 overflow-y-scroll overflow-x-hidden pt-16 min-[768px]:pt-0">
+          {/* Scrollable Content Area */}
+          <div className="flex-1 overflow-y-auto overflow-x-hidden pt-16 min-[768px]:pt-0">
             {/* Mobile Type Navigation Tabs - Inside scrollable area (below 768px only) */}
             <div className="min-[768px]:hidden overflow-x-hidden bg-white border-b border-gray-100">
               <div className="px-4">
@@ -278,7 +278,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
                 ))}
               </div>
 
-              {/* Pagination - SEMPRE RENDERIZAR */}
+              {/* Pagination */}
               <div className="mt-8 mb-8 w-full overflow-x-auto">
                 <Pagination
                   currentPage={currentPage}

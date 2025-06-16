@@ -60,9 +60,10 @@ export const Pagination: React.FC<PaginationProps> = ({
     }
   };
 
-  // SEMPRE renderizar o container com altura fixa para evitar layout shift
+  if (totalPages <= 1) return null;
+
   return (
-    <div className={`flex items-center justify-center gap-2 h-16 ${className}`}>
+    <div className={`flex items-center justify-center gap-2 ${className}`}>
       <button
         onClick={handlePrevious}
         disabled={currentPage === 1}
