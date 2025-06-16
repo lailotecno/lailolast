@@ -1,5 +1,3 @@
-@import 'geist/font.css';
-@import 'geist/mono.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +6,7 @@
 html, body {
   overflow-x: hidden;
   max-width: 100vw;
-  font-family: 'Geist', system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Hide scrollbar for mobile horizontal scroll and filter sidebar */
