@@ -224,8 +224,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col min-h-0 min-w-0 overflow-x-hidden">
-          {/* Scrollable Content Area */}
-          <div className="flex-1 overflow-y-auto overflow-x-hidden pt-16 min-[768px]:pt-0">
+          {/* Scrollable Content Area - FORÇAR BARRA DE ROLAGEM SEMPRE VISÍVEL */}
+          <div className="flex-1 overflow-y-scroll overflow-x-hidden pt-16 min-[768px]:pt-0">
             {/* Mobile Type Navigation Tabs - Inside scrollable area (below 768px only) */}
             <div className="min-[768px]:hidden overflow-x-hidden bg-white border-b border-gray-100">
               <div className="px-4">
