@@ -73,14 +73,14 @@ export function AuctionCardVerticalVehicle({
         )}
       </div>
 
-      <div className="space-y-1">
+      <div className="space-y-1 min-h-[75px] flex flex-col">
         {badge && (
           <span className="inline-block text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">
             {badge}
           </span>
         )}
 
-        <div>
+        <div className="flex-1">
           <div className="flex items-center gap-1.5 mb-0">
             <h3 className="text-lg md:text-base font-bold text-gray-900 flex-shrink-0">
               {brand}
@@ -98,7 +98,7 @@ export function AuctionCardVerticalVehicle({
             <span className="truncate font-normal">{formatCityState(cityState)}</span>
           </div>
 
-          <div className="flex items-baseline gap-2 mb-3">
+          <div className="flex items-baseline gap-2 mb-3 mt-auto">
             <span className="text-xl md:text-lg font-bold text-gray-900">
               {price}
             </span>
