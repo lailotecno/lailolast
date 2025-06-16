@@ -138,7 +138,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
     <div className="relative w-full h-full bg-white border-r border-gray-200">
       {/* Header - Aligned with status text (32px from top) */}
       <div className="absolute top-8 left-0 right-0 p-4 border-b border-gray-200 bg-white z-10">
-        <h2 className="text-lg font-semibold text-gray-900">Filtros</h2>
+        <h2 className="text-lg md:text-base font-semibold text-gray-900">Filtros</h2>
       </div>
 
       {/* Filters content - Scrollable area with proper spacing */}

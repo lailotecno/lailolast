@@ -45,7 +45,7 @@ export function AuctionCardHorizontalVehicle({
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           {isNew && (
-            <div className="absolute top-1.5 left-1.5 md:top-2 md:left-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-[10px] md:text-xs font-bold uppercase px-1.5 py-0.5 md:px-2.5 md:py-1 rounded-md md:rounded-lg shadow-sm">
+            <div className="absolute top-1.5 left-1.5 md:top-2 md:left-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-[10px] md:text-[10px] font-bold uppercase px-1.5 py-0.5 md:px-2.5 md:py-1 rounded-md md:rounded-lg shadow-sm">
               Novo
             </div>
           )}
@@ -53,18 +53,18 @@ export function AuctionCardHorizontalVehicle({
 
         <div className="flex-1 space-y-1 md:space-y-2 min-w-0">
           {badge && (
-            <span className="inline-block text-[10px] md:text-xs bg-blue-50 text-blue-700 px-2 py-0.5 md:px-3 md:py-1 rounded-full font-medium">
+            <span className="inline-block text-[10px] md:text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 md:px-3 md:py-1 rounded-full font-medium">
               {badge}
             </span>
           )}
 
           <div className="flex items-start justify-between gap-2 md:gap-3">
             <div className="flex-1 min-w-0">
-              <h3 className="text-[13px] md:text-lg font-bold text-gray-900 truncate mb-0.5 md:mb-1 leading-tight">
+              <h3 className="text-[13px] md:text-base font-bold text-gray-900 truncate mb-0.5 md:mb-1 leading-tight">
                 {brand} {model}
               </h3>
               
-              <div className="flex items-center gap-1.5 md:gap-2 text-[11px] md:text-sm text-gray-600 mb-2 md:mb-3">
+              <div className="flex items-center gap-1.5 md:gap-2 text-[11px] md:text-xs text-gray-600 mb-2 md:mb-3">
                 <span className="font-medium">{color}</span>
                 <span className="text-gray-300">•</span>
                 <span className="font-medium">{year}</span>
@@ -73,11 +73,11 @@ export function AuctionCardHorizontalVehicle({
               </div>
 
               <div className="flex items-baseline gap-1.5 md:gap-2">
-                <span className="text-[15px] md:text-2xl font-bold text-gray-900 leading-tight">
+                <span className="text-[15px] md:text-xl font-bold text-gray-900 leading-tight">
                   {price}
                 </span>
                 {discount && (
-                  <span className="text-[10px] md:text-sm text-gray-500 line-through">
+                  <span className="text-[10px] md:text-xs text-gray-500 line-through">
                     {discount}
                   </span>
                 )}
@@ -121,7 +121,7 @@ export function AuctionCardHorizontalVehicle({
 
         <div className="flex items-center gap-2 md:gap-3">
           {date && (
-            <div className="text-[10px] md:text-sm text-gray-500 font-medium">
+            <div className="text-[10px] md:text-xs text-gray-500 font-medium">
               {date}
             </div>
           )}

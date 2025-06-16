@@ -75,11 +75,11 @@ export function AuctionCardVerticalVehicle({
         )}
 
         <div>
-          <h3 className="text-lg font-bold text-gray-900 truncate mb-2">
+          <h3 className="text-lg md:text-base font-bold text-gray-900 truncate mb-2">
             {brand} {model}
           </h3>
           
-          <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
+          <div className="flex items-center gap-2 text-sm md:text-xs text-gray-600 mb-3">
             <span className="font-medium">{color}</span>
             <span className="text-gray-300">•</span>
             <span className="font-medium">{year}</span>
@@ -88,11 +88,11 @@ export function AuctionCardVerticalVehicle({
           </div>
 
           <div className="flex items-baseline gap-2 mb-4">
-            <span className="text-xl font-bold text-gray-900">
+            <span className="text-xl md:text-lg font-bold text-gray-900">
               {price}
             </span>
             {discount && (
-              <span className="text-sm text-gray-500 line-through">
+              <span className="text-sm md:text-xs text-gray-500 line-through">
                 {discount}
               </span>
             )}

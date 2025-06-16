@@ -72,29 +72,29 @@ export function AuctionCardVerticalBase({
 
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <h3 className="text-lg font-bold text-gray-900 truncate flex-1">
+            <h3 className="text-lg md:text-base font-bold text-gray-900 truncate flex-1">
               {titleLeft}
             </h3>
             {titleRight && (
               <>
                 <span className="text-gray-300 font-light">•</span>
-                <span className="text-sm text-gray-500 font-medium whitespace-nowrap">
+                <span className="text-sm md:text-xs text-gray-500 font-medium whitespace-nowrap">
                   {titleRight}
                 </span>
               </>
             )}
           </div>
           
-          <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+          <p className="text-sm md:text-xs text-gray-600 line-clamp-2 mb-3">
             {subtitle}
           </p>
 
           <div className="flex items-baseline gap-2 mb-4">
-            <span className="text-xl font-bold text-gray-900">
+            <span className="text-xl md:text-lg font-bold text-gray-900">
               {price}
             </span>
             {discount && (
-              <span className="text-sm text-gray-500 line-through">
+              <span className="text-sm md:text-xs text-gray-500 line-through">
                 {discount}
               </span>
             )}
