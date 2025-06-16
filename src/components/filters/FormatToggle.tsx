@@ -42,7 +42,7 @@ export const FormatToggle: React.FC<FormatToggleProps> = ({
               onClick={() => handleSelect(option.value)}
               disabled={disabled}
               className={cn(
-                "relative p-4 rounded-xl border-2 text-center transition-all duration-200 active:scale-[0.98]",
+                "relative p-4 rounded-xl border text-center transition-all duration-200 active:scale-[0.98]",
                 isSelected
                   ? "border-blue-500 bg-blue-50 text-blue-900 shadow-sm"
                   : "border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50",

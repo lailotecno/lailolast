@@ -74,7 +74,7 @@ export const SortPopover: React.FC<SortPopoverProps> = ({
   }
 
   return (
-    <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 z-50 overflow-hidden">
+    <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 z-50 overflow-hidden">
       <div className="flex items-center justify-between p-4 border-b border-gray-100">
         <div className="flex items-center gap-2">
           <ChevronDown className="w-4 h-4 text-blue-600" />

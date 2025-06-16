@@ -31,7 +31,7 @@ const ValidatedImoveisRoute: React.FC = () => {
 function App() {
   return (
     <BrowserRouter>
-      <div className="relative">
+      <div className="relative bg-gray-50">
         <Routes>
           {/* Redirect /buscador to default */}
           <Route path="/buscador" element={<Navigate to="/buscador/veiculos/todos" replace />} />

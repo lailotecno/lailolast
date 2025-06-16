@@ -46,7 +46,7 @@ export const ComboBoxSearch: React.FC<ComboBoxSearchProps> = ({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-full justify-between", className)}
+          className={cn("w-full justify-between border-gray-200 hover:border-gray-300", className)}
           disabled={disabled}
         >
           {selectedOption ? selectedOption.label : placeholder}

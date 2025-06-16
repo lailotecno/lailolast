@@ -30,7 +30,7 @@ export const MultiToggleGrid: React.FC<MultiToggleGridProps> = ({
           key={option.value}
           value={option.value}
           variant="outline"
-          className="data-[state=on]:bg-blue-600 data-[state=on]:text-white"
+          className="data-[state=on]:bg-blue-600 data-[state=on]:text-white border-gray-200 hover:border-gray-300"
         >
           {option.label}
         </ToggleGroupItem>
