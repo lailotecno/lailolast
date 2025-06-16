@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, X, ArrowUpDown } from 'lucide-react';
+import { Check, X, ChevronDown } from 'lucide-react';
 import { SortOption } from '../types/auction';
 
 interface SortPopoverProps {
@@ -44,7 +44,7 @@ export const SortPopover: React.FC<SortPopoverProps> = ({
           <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-6" />
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <ArrowUpDown className="w-5 h-5 text-blue-600" />
+              <ChevronDown className="w-5 h-5 text-blue-600" />
               <h3 className="text-xl font-bold text-gray-900">Ordenar por</h3>
             </div>
             <button
@@ -77,7 +77,7 @@ export const SortPopover: React.FC<SortPopoverProps> = ({
     <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 z-50 overflow-hidden">
       <div className="flex items-center justify-between p-4 border-b border-gray-100">
         <div className="flex items-center gap-2">
-          <ArrowUpDown className="w-4 h-4 text-blue-600" />
+          <ChevronDown className="w-4 h-4 text-blue-600" />
           <span className="font-semibold text-gray-900">Ordenar por</span>
         </div>
         <button
