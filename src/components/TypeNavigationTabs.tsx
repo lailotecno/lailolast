@@ -158,7 +158,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
   };
 
   return (
-    <div className="w-full">
+    <div>
       <div className="hidden md:block">
         <div className="flex items-center relative">
           {/* Container das tabs com scroll */}
