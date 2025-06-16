@@ -81,9 +81,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
           />
         )}
         
-        {/* Modal */}
+        {/* Modal - TELA COMPLETA */}
         <div
-          className={`fixed top-0 right-0 w-full max-w-sm h-full bg-white z-[60] transform transition-transform duration-300 flex flex-col ${
+          className={`fixed inset-0 bg-white z-[60] transform transition-transform duration-300 flex flex-col ${
             isOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
