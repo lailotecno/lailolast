@@ -115,9 +115,9 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
         <span className={`text-xs leading-tight text-center whitespace-nowrap ${isActive ? 'font-semibold' : ''}`}>
           {tab.label}
         </span>
-        {/* Underline com largura mais adequada */}
+        {/* Underline mais estreito */}
         {isActive && (
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-blue-600 rounded-full"></div>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-blue-600 rounded-full"></div>
         )}
       </button>
     );
