@@ -202,7 +202,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
         style={{ minHeight: '44px' }}
       >
         <Icon className={`w-5 h-5 mb-1 transition-colors ${isActive ? 'text-blue-600' : 'text-gray-500 group-hover:text-gray-700'}`} />
-        <span className={`text-xs leading-tight text-center ${isActive ? 'font-semibold' : ''}`}>
+        <span className={`text-xs leading-tight text-center whitespace-nowrap ${isActive ? 'font-semibold' : ''}`}>
           {tab.label}
         </span>
       </button>
