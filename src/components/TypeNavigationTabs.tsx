@@ -158,55 +158,53 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
   };
 
   return (
-    <div className="bg-white border-b border-gray-100">
-      <div className="w-full px-4 md:px-8">
-        <div className="hidden md:block">
-          <div className="flex items-center relative">
-            {/* Container das tabs com scroll */}
-            <div 
-              ref={tabsContainerRef}
-              className="flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 flex-1"
-            >
-              {tabs.map((tab) => (
-                <TabButton
-                  key={tab.id}
-                  tab={tab}
-                  isActive={currentType === tab.id}
-                />
-              ))}
-            </div>
-            
-            {/* Botões de scroll no final - lado a lado e menores */}
-            <div className="flex items-center gap-1 ml-4 flex-shrink-0">
-              <button
-                onClick={handleScrollLeft}
-                className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
-                title="Rolar para a esquerda"
-              >
-                <ChevronLeft className="w-4 h-4 text-gray-600" />
-              </button>
-              <button
-                onClick={handleScrollRight}
-                className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
-                title="Rolar para a direita"
-              >
-                <ChevronRight className="w-4 h-4 text-gray-600" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="md:hidden">
-          <div className="flex overflow-x-auto scrollbar-hide space-x-1 py-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+    <div className="w-full">
+      <div className="hidden md:block">
+        <div className="flex items-center relative">
+          {/* Container das tabs com scroll */}
+          <div 
+            ref={tabsContainerRef}
+            className="flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 flex-1"
+          >
             {tabs.map((tab) => (
-              <div key={tab.id} className="flex-shrink-0">
-                <TabButton
-                  tab={tab}
-                  isActive={currentType === tab.id}
-                />
-              </div>
+              <TabButton
+                key={tab.id}
+                tab={tab}
+                isActive={currentType === tab.id}
+              />
             ))}
           </div>
+          
+          {/* Botões de scroll no final - lado a lado e menores */}
+          <div className="flex items-center gap-1 ml-4 flex-shrink-0">
+            <button
+              onClick={handleScrollLeft}
+              className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
+              title="Rolar para a esquerda"
+            >
+              <ChevronLeft className="w-4 h-4 text-gray-600" />
+            </button>
+            <button
+              onClick={handleScrollRight}
+              className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
+              title="Rolar para a direita"
+            >
+              <ChevronRight className="w-4 h-4 text-gray-600" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="md:hidden">
+        <div className="flex overflow-x-auto scrollbar-hide space-x-1 py-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          {tabs.map((tab) => (
+            <div key={tab.id} className="flex-shrink-0">
+              <TabButton
+                tab={tab}
+                isActive={currentType === tab.id}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

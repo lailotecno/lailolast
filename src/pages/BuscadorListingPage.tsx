@@ -92,7 +92,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
       <div className="hidden lg:block">
         <div className="bg-white border-b border-gray-100">
           <div className="w-full px-4 md:px-8">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center">
               <div className="flex-1">
                 <TypeNavigationTabs category={category} />
               </div>
@@ -226,7 +226,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
             </div>
             
             <main className="w-full px-4 md:px-8 overflow-x-hidden">
-              {/* Header with status and desktop sort control - Reduced padding */}
+              {/* Header with status and desktop sort control */}
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between py-4 gap-4 w-full">
                 <div className="min-w-0 flex-1">
                   <p className="text-gray-600 text-sm break-words">
@@ -235,8 +235,7 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
                 </div>
                 
                 {/* Desktop Sort Control Only */}
-                <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-                  <span className="text-sm text-gray-700 whitespace-nowrap">Ordenar por:</span>
+                <div className="hidden lg:flex items-center flex-shrink-0">
                   <div className="relative">
                     <button
                       onClick={() => setShowSortPopover(!showSortPopover)}
