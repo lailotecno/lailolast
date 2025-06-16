@@ -54,7 +54,7 @@ export const RangeSlider: React.FC<RangeSliderProps> = ({
         onValueChange={onValueChange}
         className="w-full"
       />
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-3">
         <div className="relative">
           {prefix && (
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
@@ -67,7 +67,7 @@ export const RangeSlider: React.FC<RangeSliderProps> = ({
             onChange={(e) => handleInputChange(0, e.target.value)}
             min={min}
             max={max}
-            className={cn("border-gray-200", prefix && "pl-8", suffix && "pr-8")}
+            className={cn("border-gray-200 rounded-xl", prefix && "pl-8", suffix && "pr-8")}
           />
           {suffix && (
             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
@@ -87,7 +87,7 @@ export const RangeSlider: React.FC<RangeSliderProps> = ({
             onChange={(e) => handleInputChange(1, e.target.value)}
             min={min}
             max={max}
-            className={cn("border-gray-200", prefix && "pl-8", suffix && "pr-8")}
+            className={cn("border-gray-200 rounded-xl", prefix && "pl-8", suffix && "pr-8")}
           />
           {suffix && (
             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">

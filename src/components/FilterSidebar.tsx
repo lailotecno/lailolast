@@ -76,14 +76,14 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         {/* Backdrop */}
         {isOpen && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-[60]"
+            className="fixed inset-0 bg-black/50 z-[60]"
             onClick={onClose}
           />
         )}
         
-        {/* Modal - TELA COMPLETA */}
+        {/* Modal - TELA COMPLETA SEM MOSTRAR LISTAGEM */}
         <div
-          className={`fixed inset-0 bg-white z-[60] transform transition-transform duration-300 flex flex-col ${
+          className={`fixed inset-0 bg-white z-[70] transform transition-transform duration-300 flex flex-col ${
             isOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -119,13 +119,13 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             <div className="flex gap-3">
               <button 
                 onClick={handleClearFilters}
-                className="flex-1 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                className="flex-1 px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors font-medium"
               >
-                Apagar
+                Limpar
               </button>
               <button 
                 onClick={handleApplyFilters}
-                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium"
               >
                 Aplicar
               </button>
@@ -165,13 +165,13 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         <div className="flex gap-2">
           <button 
             onClick={handleClearFilters}
-            className="flex-1 px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+            className="flex-1 px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors font-medium"
           >
-            Apagar
+            Limpar
           </button>
           <button 
             onClick={handleApplyFilters}
-            className="flex-1 px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            className="flex-1 px-3 py-2 text-sm bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium"
           >
             Aplicar
           </button>

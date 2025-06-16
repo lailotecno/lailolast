@@ -22,7 +22,7 @@ export const MultiToggleGrid: React.FC<MultiToggleGridProps> = ({
       type="multiple"
       value={value}
       onValueChange={onValueChange}
-      className={cn("grid grid-cols-2 gap-2 w-full", className)}
+      className={cn("grid grid-cols-2 gap-3 w-full", className)}
       disabled={disabled}
     >
       {options.map((option) => (
@@ -30,7 +30,7 @@ export const MultiToggleGrid: React.FC<MultiToggleGridProps> = ({
           key={option.value}
           value={option.value}
           variant="outline"
-          className="data-[state=on]:bg-blue-600 data-[state=on]:text-white border-gray-200 hover:border-gray-300"
+          className="data-[state=on]:bg-blue-600 data-[state=on]:text-white border-gray-200 hover:border-gray-300 rounded-xl p-3 font-medium"
         >
           {option.label}
         </ToggleGroupItem>
