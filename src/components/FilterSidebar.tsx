@@ -3,6 +3,7 @@ import { X } from 'lucide-react';
 import { Category } from '../types/auction';
 import { ImoveisFilters } from './filters/ImoveisFilters';
 import { VeiculosFilters } from './filters/VeiculosFilters';
+import { useParams } from 'react-router-dom';
 
 interface FilterSidebarProps {
   isOpen?: boolean;
@@ -41,6 +42,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   isMobile = false,
   category
 }) => {
+  const { tipo } = useParams<{ tipo: string }>();
   const [imoveisFilters, setImoveisFilters] = useState(defaultImoveisFilters)
   const [veiculosFilters, setVeiculosFilters] = useState(defaultVeiculosFilters)
 
@@ -107,6 +109,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <VeiculosFilters
                 filters={veiculosFilters}
                 onFiltersChange={handleVeiculosFiltersChange}
+                currentVehicleType={tipo || 'todos'}
               />
             )}
           </div>
@@ -152,6 +155,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
           <VeiculosFilters
             filters={veiculosFilters}
             onFiltersChange={handleVeiculosFiltersChange}
+            currentVehicleType={tipo || 'todos'}
           />
         )}
       </div>

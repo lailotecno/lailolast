@@ -28,11 +28,13 @@ interface VeiculosFiltersState {
 interface VeiculosFiltersProps {
   filters: VeiculosFiltersState
   onFiltersChange: (filters: Partial<VeiculosFiltersState>) => void
+  currentVehicleType?: string // Novo prop para receber o tipo atual
 }
 
 export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
   filters,
-  onFiltersChange
+  onFiltersChange,
+  currentVehicleType = 'todos'
 }) => {
   const [municipios, setMunicipios] = React.useState<Municipio[]>([])
   const [loadingMunicipios, setLoadingMunicipios] = React.useState(false)
@@ -120,6 +122,9 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
   ]
 
   const isVendaDireta = filters.formato === "venda-direta"
+  
+  // Verificar se deve mostrar os filtros de marca e modelo
+  const shouldShowBrandModelFilters = currentVehicleType !== 'todos' && currentVehicleType !== 'nao-informado'
 
   return (
     <div className="space-y-6">
@@ -158,34 +163,36 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
         </div>
       </div>
 
-      {/* Marca e Modelo */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
-          Marca e Modelo
-        </label>
-        <div className="grid grid-cols-1 gap-2">
-          <ComboBoxSearch
-            options={marcas}
-            value={filters.marca}
-            onValueChange={(value) => {
-              onFiltersChange({ 
-                marca: value,
-                modelo: "" // Reset modelo when marca changes
-              })
-            }}
-            placeholder="Marca"
-            searchPlaceholder="Buscar marca..."
-          />
-          <ComboBoxSearch
-            options={getModelos(filters.marca)}
-            value={filters.modelo}
-            onValueChange={(value) => onFiltersChange({ modelo: value })}
-            placeholder="Modelo"
-            searchPlaceholder="Buscar modelo..."
-            disabled={!filters.marca}
-          />
+      {/* Marca e Modelo - Só exibir se não for 'todos' ou 'nao-informado' */}
+      {shouldShowBrandModelFilters && (
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-3">
+            Marca e Modelo
+          </label>
+          <div className="grid grid-cols-1 gap-2">
+            <ComboBoxSearch
+              options={marcas}
+              value={filters.marca}
+              onValueChange={(value) => {
+                onFiltersChange({ 
+                  marca: value,
+                  modelo: "" // Reset modelo when marca changes
+                })
+              }}
+              placeholder="Marca"
+              searchPlaceholder="Buscar marca..."
+            />
+            <ComboBoxSearch
+              options={getModelos(filters.marca)}
+              value={filters.modelo}
+              onValueChange={(value) => onFiltersChange({ modelo: value })}
+              placeholder="Modelo"
+              searchPlaceholder="Buscar modelo..."
+              disabled={!filters.marca}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Cor */}
       <div>
