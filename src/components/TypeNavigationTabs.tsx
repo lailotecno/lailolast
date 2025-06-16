@@ -162,21 +162,10 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
       <div className="w-full px-4 md:px-8">
         <div className="hidden md:block">
           <div className="flex items-center relative">
-            {/* Botão de scroll para a esquerda - sempre visível */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white via-white to-transparent pl-0 pr-4 py-2 z-10">
-              <button
-                onClick={handleScrollLeft}
-                className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
-                title="Rolar para a esquerda"
-              >
-                <ChevronLeft className="w-5 h-5 text-gray-600" />
-              </button>
-            </div>
-            
-            {/* Container das tabs com scroll - sempre com padding para os botões */}
+            {/* Container das tabs com scroll */}
             <div 
               ref={tabsContainerRef}
-              className="flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 flex-1 pl-16 pr-16"
+              className="flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2 flex-1"
             >
               {tabs.map((tab) => (
                 <TabButton
@@ -187,14 +176,21 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
               ))}
             </div>
             
-            {/* Botão de scroll para a direita - sempre visível */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white via-white to-transparent pr-0 pl-4 py-2 z-10">
+            {/* Botões de scroll no final - lado a lado e menores */}
+            <div className="flex items-center gap-1 ml-4 flex-shrink-0">
+              <button
+                onClick={handleScrollLeft}
+                className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
+                title="Rolar para a esquerda"
+              >
+                <ChevronLeft className="w-4 h-4 text-gray-600" />
+              </button>
               <button
                 onClick={handleScrollRight}
-                className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
+                className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
                 title="Rolar para a direita"
               >
-                <ChevronRight className="w-5 h-5 text-gray-600" />
+                <ChevronRight className="w-4 h-4 text-gray-600" />
               </button>
             </div>
           </div>

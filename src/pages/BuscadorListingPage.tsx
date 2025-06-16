@@ -189,8 +189,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
             </div>
             
             <main className="w-full px-4 md:px-8 py-4 md:py-8 overflow-x-hidden">
-              {/* Header with status and desktop controls - Altura mínima para evitar layout shift */}
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4 md:mb-8 gap-4 w-full min-h-[60px]">
+              {/* Header with status and desktop controls - Espaçamento de 12px */}
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-3 gap-4 w-full min-h-[60px]">
                 <div className="min-w-0 flex-1">
                   <p className="text-gray-600 text-sm break-words min-h-[20px]">
                     Encontramos <span className="font-semibold text-blue-600">{allAuctions.length}</span> leilões em <span className="font-semibold text-blue-600">8</span> sites • <span className="font-semibold text-blue-600">{allAuctions.filter(auction => auction.isNew).length}</span> novos hoje
