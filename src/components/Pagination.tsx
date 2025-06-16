@@ -63,65 +63,61 @@ export const Pagination: React.FC<PaginationProps> = ({
   // SEMPRE renderizar o container com altura fixa para evitar layout shift
   return (
     <div className={`flex items-center justify-center gap-2 h-16 ${className}`}>
-      {totalPages > 1 && (
-        <>
-          <button
-            onClick={handlePrevious}
-            disabled={currentPage === 1}
-            className={`flex items-center justify-center w-10 h-10 rounded-xl border transition-all duration-200 ${
-              currentPage === 1
-                ? 'border-gray-200 text-gray-400 cursor-not-allowed'
-                : 'border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 active:scale-95'
-            }`}
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
+      <button
+        onClick={handlePrevious}
+        disabled={currentPage === 1}
+        className={`flex items-center justify-center w-10 h-10 rounded-xl border transition-all duration-200 ${
+          currentPage === 1
+            ? 'border-gray-200 text-gray-400 cursor-not-allowed'
+            : 'border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 active:scale-95'
+        }`}
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
 
-          <div className="flex items-center gap-1">
-            {visiblePages.map((page, index) => {
-              if (page === '...') {
-                return (
-                  <div
-                    key={`dots-${index}`}
-                    className="flex items-center justify-center w-10 h-10 text-gray-400"
-                  >
-                    <MoreHorizontal className="w-4 h-4" />
-                  </div>
-                );
-              }
+      <div className="flex items-center gap-1">
+        {visiblePages.map((page, index) => {
+          if (page === '...') {
+            return (
+              <div
+                key={`dots-${index}`}
+                className="flex items-center justify-center w-10 h-10 text-gray-400"
+              >
+                <MoreHorizontal className="w-4 h-4" />
+              </div>
+            );
+          }
 
-              const pageNumber = page as number;
-              const isActive = pageNumber === currentPage;
+          const pageNumber = page as number;
+          const isActive = pageNumber === currentPage;
 
-              return (
-                <button
-                  key={pageNumber}
-                  onClick={() => handlePageClick(pageNumber)}
-                  className={`flex items-center justify-center w-10 h-10 rounded-xl font-semibold transition-all duration-200 active:scale-95 ${
-                    isActive
-                      ? 'bg-blue-600 text-white shadow-sm'
-                      : 'border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300'
-                  }`}
-                >
-                  {pageNumber}
-                </button>
-              );
-            })}
-          </div>
+          return (
+            <button
+              key={pageNumber}
+              onClick={() => handlePageClick(pageNumber)}
+              className={`flex items-center justify-center w-10 h-10 rounded-xl font-semibold transition-all duration-200 active:scale-95 ${
+                isActive
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300'
+              }`}
+            >
+              {pageNumber}
+            </button>
+          );
+        })}
+      </div>
 
-          <button
-            onClick={handleNext}
-            disabled={currentPage === totalPages}
-            className={`flex items-center justify-center w-10 h-10 rounded-xl border transition-all duration-200 ${
-              currentPage === totalPages
-                ? 'border-gray-200 text-gray-400 cursor-not-allowed'
-                : 'border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 active:scale-95'
-            }`}
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </>
-      )}
+      <button
+        onClick={handleNext}
+        disabled={currentPage === totalPages}
+        className={`flex items-center justify-center w-10 h-10 rounded-xl border transition-all duration-200 ${
+          currentPage === totalPages
+            ? 'border-gray-200 text-gray-400 cursor-not-allowed'
+            : 'border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 active:scale-95'
+        }`}
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
     </div>
   );
 };
