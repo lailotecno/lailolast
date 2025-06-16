@@ -3,6 +3,7 @@ import { ComboBoxSearch } from "./ComboBoxSearch"
 import { RangeSlider } from "./RangeSlider"
 import { FormatToggle } from "./FormatToggle"
 import { MultiToggleGrid } from "./MultiToggleGrid"
+import { getEstadosOptions, getMunicipiosOptions, fetchMunicipiosByEstado, Municipio } from "../../utils/ibgeApi"
 import {
   Select,
   SelectContent,
@@ -33,34 +34,27 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
   filters,
   onFiltersChange
 }) => {
-  // Mock data - replace with real data
-  const estados = [
-    { value: "", label: "Todos os estados" },
-    { value: "sp", label: "São Paulo" },
-    { value: "rj", label: "Rio de Janeiro" },
-    { value: "mg", label: "Minas Gerais" },
-    { value: "rs", label: "Rio Grande do Sul" },
-    { value: "pr", label: "Paraná" },
-  ]
+  const [municipios, setMunicipios] = React.useState<Municipio[]>([])
+  const [loadingMunicipios, setLoadingMunicipios] = React.useState(false)
 
-  const getCidades = (estado: string) => {
-    const cidadesPorEstado: Record<string, Array<{ value: string; label: string }>> = {
-      sp: [
-        { value: "", label: "Todas as cidades" },
-        { value: "sao-paulo", label: "São Paulo" },
-        { value: "campinas", label: "Campinas" },
-        { value: "santos", label: "Santos" },
-      ],
-      rj: [
-        { value: "", label: "Todas as cidades" },
-        { value: "rio-de-janeiro", label: "Rio de Janeiro" },
-        { value: "niteroi", label: "Niterói" },
-        { value: "petropolis", label: "Petrópolis" },
-      ],
+  // Carregar municípios quando o estado mudar
+  React.useEffect(() => {
+    if (filters.estado) {
+      setLoadingMunicipios(true)
+      fetchMunicipiosByEstado(filters.estado)
+        .then(setMunicipios)
+        .catch(error => {
+          console.error('Erro ao carregar municípios:', error)
+          setMunicipios([])
+        })
+        .finally(() => setLoadingMunicipios(false))
+    } else {
+      setMunicipios([])
     }
-    
-    return cidadesPorEstado[estado] || [{ value: "", label: "Todas as cidades" }]
-  }
+  }, [filters.estado])
+
+  const estados = getEstadosOptions()
+  const cidades = getMunicipiosOptions(municipios)
 
   const marcas = [
     { value: "", label: "Todas as marcas" },
@@ -148,12 +142,18 @@ export const VeiculosFilters: React.FC<VeiculosFiltersProps> = ({
             searchPlaceholder="Buscar estado..."
           />
           <ComboBoxSearch
-            options={getCidades(filters.estado)}
+            options={cidades}
             value={filters.cidade}
             onValueChange={(value) => onFiltersChange({ cidade: value })}
-            placeholder="Cidade"
+            placeholder={
+              !filters.estado 
+                ? "Selecione um estado" 
+                : loadingMunicipios 
+                  ? "Carregando cidades..." 
+                  : "Cidade"
+            }
             searchPlaceholder="Buscar cidade..."
-            disabled={!filters.estado}
+            disabled={!filters.estado || loadingMunicipios}
           />
         </div>
       </div>
