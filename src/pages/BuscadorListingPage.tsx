@@ -88,8 +88,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
 
   return (
     <div className="flex flex-col h-screen pb-20 md:pb-0 md:pl-20 overflow-x-hidden">
-      {/* Type Navigation Tabs with View Toggle - Desktop Only - Always Visible */}
-      <div className="hidden lg:block bg-white border-b border-gray-100 sticky top-0 z-30">
+      {/* Type Navigation Tabs with View Toggle - Desktop Only (768px+) - Always Visible */}
+      <div className="hidden min-[768px]:block bg-white border-b border-gray-100 sticky top-0 z-30">
         <div className="px-4 md:px-6">
           <div className="flex items-center">
             <div className="flex-1">
@@ -128,8 +128,8 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
         </div>
       </div>
 
-      {/* Mobile Action Bar - Fixed at top with consistent height */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-30 h-16">
+      {/* Mobile Action Bar - Fixed at top with consistent height (below 768px) */}
+      <div className="min-[768px]:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-30 h-16">
         {showSearch ? (
           // Search Bar Mode
           <div className="px-4 py-3 h-full flex items-center">
@@ -209,17 +209,17 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
       </div>
 
       <div className="flex flex-1 min-h-0 overflow-x-hidden">
-        {/* Desktop Sidebar - Increased width */}
-        <div className="hidden lg:block w-[35%] max-w-md flex-shrink-0">
+        {/* Desktop Sidebar - Increased width (768px+) */}
+        <div className="hidden min-[768px]:block w-[35%] max-w-md flex-shrink-0">
           <FilterSidebar category={category} />
         </div>
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col min-h-0 min-w-0 overflow-x-hidden">
           {/* Scrollable Content Area */}
-          <div className="flex-1 overflow-y-auto overflow-x-hidden pt-16 lg:pt-0">
-            {/* Mobile Type Navigation Tabs - Inside scrollable area */}
-            <div className="lg:hidden overflow-x-hidden bg-white border-b border-gray-100">
+          <div className="flex-1 overflow-y-auto overflow-x-hidden pt-16 min-[768px]:pt-0">
+            {/* Mobile Type Navigation Tabs - Inside scrollable area (below 768px) */}
+            <div className="min-[768px]:hidden overflow-x-hidden bg-white border-b border-gray-100">
               <div className="px-4">
                 <TypeNavigationTabs category={category} />
               </div>
@@ -227,15 +227,15 @@ export const BuscadorListingPage: React.FC<BuscadorListingPageProps> = ({ catego
             
             <main className="w-full px-4 md:px-6 overflow-x-hidden">
               {/* Header with status and desktop sort control */}
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between py-4 gap-3 w-full">
+              <div className="flex flex-col min-[768px]:flex-row min-[768px]:items-center min-[768px]:justify-between py-4 gap-3 w-full">
                 <div className="min-w-0 flex-1">
                   <p className="text-gray-600 text-sm break-words">
                     Encontramos <span className="font-semibold text-blue-600">{allAuctions.length}</span> leilões em <span className="font-semibold text-blue-600">8</span> sites • <span className="font-semibold text-blue-600">{allAuctions.filter(auction => auction.isNew).length}</span> novos hoje
                   </p>
                 </div>
                 
-                {/* Desktop Sort Control Only */}
-                <div className="hidden lg:flex items-center flex-shrink-0">
+                {/* Desktop Sort Control Only (768px+) */}
+                <div className="hidden min-[768px]:flex items-center flex-shrink-0">
                   <div className="relative">
                     <button
                       onClick={() => setShowSortPopover(!showSortPopover)}

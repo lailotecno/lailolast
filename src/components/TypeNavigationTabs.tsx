@@ -159,8 +159,8 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
 
   return (
     <div className="w-full">
-      {/* Desktop version - Always visible */}
-      <div className="hidden md:block">
+      {/* Desktop version - Always visible (768px+) */}
+      <div className="hidden min-[768px]:block">
         <div className="flex items-center relative">
           {/* Container das tabs com scroll */}
           <div 
@@ -196,8 +196,8 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
         </div>
       </div>
 
-      {/* Mobile version */}
-      <div className="md:hidden">
+      {/* Mobile version (below 768px) */}
+      <div className="min-[768px]:hidden">
         <div className="flex overflow-x-auto scrollbar-hide space-x-1 py-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {tabs.map((tab) => (
             <div key={tab.id} className="flex-shrink-0">

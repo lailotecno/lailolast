@@ -133,7 +133,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
     );
   }
 
-  // Desktop version - Compact for notebook screens
+  // Desktop version - Compact for notebook screens (768px+)
   return (
     <div className="relative w-full h-full bg-white border-r border-gray-200">
       {/* Header - Compact spacing */}
