@@ -15,7 +15,6 @@ import {
   Mountain, 
   Building2, 
   HelpCircle,
-  ChevronRight,
   MoreHorizontal
 } from 'lucide-react';
 import { Category } from '../types/auction';
@@ -126,18 +125,20 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
 
       const container = tabsContainerRef.current;
       const containerWidth = container.offsetWidth;
-      const moreButtonWidth = 120;
-      const availableWidth = containerWidth - moreButtonWidth;
+      const moreButtonWidth = 60; // Largura do botão circular "Mais"
+      const availableWidth = containerWidth - moreButtonWidth - 16; // 16px de margem
 
       let currentWidth = 0;
       const visible: TabItem[] = [];
       const hidden: TabItem[] = [];
 
+      // Sempre mostrar "Todos" primeiro
       const todosTab = tabs[0];
       visible.push(todosTab);
       currentWidth += 120;
 
-      for (let i = 1; i < tabs.length - 1; i++) {
+      // Adicionar outras abas até esgotar o espaço
+      for (let i = 1; i < tabs.length; i++) {
         const estimatedTabWidth = 120;
         if (currentWidth + estimatedTabWidth <= availableWidth) {
           visible.push(tabs[i]);
@@ -145,13 +146,6 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
         } else {
           hidden.push(tabs[i]);
         }
-      }
-
-      const lastTab = tabs[tabs.length - 1];
-      if (currentWidth + 120 <= availableWidth) {
-        visible.push(lastTab);
-      } else {
-        hidden.push(lastTab);
       }
 
       setVisibleTabs(visible);
@@ -198,7 +192,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
       <div className="w-full px-4 md:px-8">
         <div className="hidden md:block">
           <div ref={tabsContainerRef} className="flex items-center justify-between">
-            <div className="flex items-center overflow-hidden min-w-0">
+            <div className="flex items-center overflow-hidden min-w-0 flex-1">
               <div className="flex space-x-1">
                 {visibleTabs.map((tab) => (
                   <TabButton
@@ -208,26 +202,26 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
                   />
                 ))}
               </div>
-              
-              {/* Reservar espaço fixo para o botão "Mais" para evitar layout shift */}
-              <div className="relative ml-2 flex-shrink-0 w-[120px] h-20 flex items-center">
-                {hiddenTabs.length > 0 && (
-                  <button
-                    onClick={() => setShowMore(!showMore)}
-                    className="flex items-center px-4 py-4 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors rounded-lg"
-                  >
-                    <ChevronRight className="w-4 h-4 mr-1" />
-                    <span>Mais</span>
-                  </button>
-                )}
+            </div>
+            
+            {/* Botão "Mais" circular inspirado no Airbnb - só aparece quando necessário */}
+            {hiddenTabs.length > 0 && (
+              <div className="relative flex-shrink-0 ml-4">
+                <button
+                  onClick={() => setShowMore(!showMore)}
+                  className="w-12 h-12 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
+                  title="Ver mais tipos"
+                >
+                  <MoreHorizontal className="w-5 h-5 text-gray-600" />
+                </button>
                 
-                {showMore && hiddenTabs.length > 0 && (
+                {showMore && (
                   <>
                     <div
                       className="fixed inset-0 z-10"
                       onClick={() => setShowMore(false)}
                     />
-                    <div className="absolute top-full right-0 mt-1 bg-white rounded-2xl shadow-xl border border-gray-100 z-20 min-w-[220px] overflow-hidden">
+                    <div className="absolute top-full right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 z-20 min-w-[220px] overflow-hidden">
                       <div className="py-2">
                         {hiddenTabs.map((tab) => {
                           const Icon = tab.icon;
@@ -251,7 +245,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
                   </>
                 )}
               </div>
-            </div>
+            )}
           </div>
         </div>
 
