@@ -199,8 +199,8 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
             </button>
           </div>
           
-          {/* Espaçador para manter a altura do container */}
-          <div className="h-16 w-full"></div>
+          {/* Espaçador para manter a altura do container - ALTURA CORRIGIDA */}
+          <div className="h-[65px] w-full"></div>
         </div>
       </div>
 
