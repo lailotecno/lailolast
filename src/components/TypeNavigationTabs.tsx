@@ -137,22 +137,36 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
   };
 
   const TabButton: React.FC<{ tab: TabItem; isActive: boolean }> = ({ tab, isActive }) => {
-    const Icon = tab.icon;
-    
     return (
       <button
         onClick={() => handleTabClick(tab.route)}
-        className={`flex flex-col items-center justify-center min-w-[90px] px-4 py-3 text-sm font-medium transition-all duration-200 relative group ${
-          isActive
-            ? 'text-blue-600 border-b-2 border-blue-600'
-            : 'text-gray-600 hover:text-gray-900 border-b-2 border-transparent hover:bg-gray-50'
-        }`}
-        style={{ minHeight: '44px' }}
+        className={`
+          relative px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 
+          whitespace-nowrap flex-shrink-0 min-w-fit
+          transform hover:scale-[1.02] active:scale-[0.98]
+          ${isActive
+            ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/25 ring-2 ring-blue-500/20'
+            : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900 shadow-sm'
+          }
+        `}
+        style={{ 
+          minHeight: '44px',
+          backdropFilter: 'blur(8px)',
+        }}
       >
-        <Icon className={`w-5 h-5 mb-1 transition-colors ${isActive ? 'text-blue-600' : 'text-gray-500 group-hover:text-gray-700'}`} />
-        <span className={`text-xs leading-tight text-center whitespace-nowrap ${isActive ? 'font-semibold' : ''}`}>
+        <span className="relative z-10 font-medium tracking-wide">
           {tab.label}
         </span>
+        
+        {/* Gradient overlay for active state */}
+        {isActive && (
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-blue-700/90 rounded-full" />
+        )}
+        
+        {/* Subtle glow effect for active state */}
+        {isActive && (
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-blue-600/20 rounded-full blur-sm" />
+        )}
       </button>
     );
   };
@@ -165,11 +179,11 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
           {/* Container das tabs com scroll - POSIÇÃO ABSOLUTA para não empurrar os botões */}
           <div 
             ref={tabsContainerRef}
-            className="absolute inset-0 flex flex-nowrap overflow-x-auto scrollbar-hide space-x-1 py-2"
+            className="absolute inset-0 flex flex-nowrap overflow-x-auto scrollbar-hide gap-3 py-3 px-1"
             style={{
               /* Máscara CSS para esconder o conteúdo que transborda à direita */
-              maskImage: 'linear-gradient(to right, black 0%, black calc(100% - 100px), transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to right, black 0%, black calc(100% - 100px), transparent 100%)'
+              maskImage: 'linear-gradient(to right, black 0%, black calc(100% - 120px), transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to right, black 0%, black calc(100% - 120px), transparent 100%)'
             }}
           >
             {tabs.map((tab) => (
@@ -182,17 +196,17 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
           </div>
           
           {/* Botões de scroll - POSIÇÃO ABSOLUTA FIXA no canto direito */}
-          <div className="absolute top-0 right-0 bottom-0 w-24 flex items-center justify-end gap-1 bg-gradient-to-l from-white via-white/95 to-transparent z-20 pr-2">
+          <div className="absolute top-0 right-0 bottom-0 w-28 flex items-center justify-end gap-2 bg-gradient-to-l from-white via-white/95 to-transparent z-20 pr-2">
             <button
               onClick={handleScrollLeft}
-              className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
+              className="w-9 h-9 rounded-full border border-gray-200 bg-white/90 backdrop-blur-sm hover:bg-white hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
               title="Rolar para a esquerda"
             >
               <ChevronLeft className="w-4 h-4 text-gray-600" />
             </button>
             <button
               onClick={handleScrollRight}
-              className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
+              className="w-9 h-9 rounded-full border border-gray-200 bg-white/90 backdrop-blur-sm hover:bg-white hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md active:scale-95"
               title="Rolar para a direita"
             >
               <ChevronRight className="w-4 h-4 text-gray-600" />
@@ -200,13 +214,13 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
           </div>
           
           {/* Espaçador para manter a altura do container - ALTURA CORRIGIDA */}
-          <div className="h-[65px] w-full"></div>
+          <div className="h-[62px] w-full"></div>
         </div>
       </div>
 
       {/* Mobile version - APENAS abaixo de 768px */}
       <div className="max-[767px]:block min-[768px]:hidden">
-        <div className="flex overflow-x-auto scrollbar-hide space-x-1 py-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="flex overflow-x-auto scrollbar-hide gap-3 py-3 px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {tabs.map((tab) => (
             <div key={tab.id} className="flex-shrink-0">
               <TabButton
