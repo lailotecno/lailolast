@@ -201,9 +201,9 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
         </div>
       </div>
 
-      {/* Mobile version - APENAS abaixo de 768px */}
+      {/* Mobile version - APENAS abaixo de 768px - SEM PADDING À ESQUERDA */}
       <div className="max-[767px]:block min-[768px]:hidden">
-        <div className="flex overflow-x-auto scrollbar-hide gap-2 py-3 px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="flex overflow-x-auto scrollbar-hide gap-2 py-3" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {tabs.map((tab) => (
             <div key={tab.id} className="flex-shrink-0">
               <TabButton
