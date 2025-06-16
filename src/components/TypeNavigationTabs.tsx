@@ -200,7 +200,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
         <div className="hidden md:block">
           <div ref={tabsContainerRef} className="flex items-center justify-between">
             <div className="flex items-center overflow-hidden min-w-0">
-              <div className="flex space-x-1 overflow-x-hidden">
+              <div className="flex space-x-1">
                 {visibleTabs.map((tab) => (
                   <TabButton
                     key={tab.id}
