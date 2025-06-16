@@ -56,15 +56,19 @@ export function AuctionCardHorizontalVehicle({
           )}
         </div>
 
-        <div className="flex-1 space-y-1 min-w-0">
-          {badge && (
-            <span className="inline-block text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 md:px-2.5 md:py-0.5 rounded-full font-medium">
-              {badge}
-            </span>
-          )}
+        {/* Container de texto com altura fixa para evitar layout shift */}
+        <div className="flex-1 min-w-0 h-[62px] md:h-[70px] flex flex-col justify-between">
+          {/* Espaço reservado para badge - sempre ocupa espaço */}
+          <div className="min-h-[16px] mb-1">
+            {badge && (
+              <span className="inline-block text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 md:px-2.5 md:py-0.5 rounded-full font-medium">
+                {badge}
+              </span>
+            )}
+          </div>
 
-          <div className="flex items-start justify-between gap-2">
-            <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-2 flex-1">
+            <div className="flex-1 min-w-0 flex flex-col justify-center">
               <div className="flex items-center gap-1.5 mb-0.5">
                 <h3 className="text-[13px] md:text-sm font-bold text-gray-900 leading-tight flex-shrink-0">
                   {brand}
@@ -74,7 +78,7 @@ export function AuctionCardHorizontalVehicle({
                 </span>
               </div>
               
-              <div className="flex items-center gap-1.5 text-[11px] md:text-xs text-gray-600 mb-2">
+              <div className="flex items-center gap-1.5 text-[11px] md:text-xs text-gray-600 mb-1">
                 <span className="font-normal">{color}</span>
                 <span className="text-gray-300">•</span>
                 <span className="font-normal">{year}</span>
@@ -100,7 +104,7 @@ export function AuctionCardHorizontalVehicle({
                   e.stopPropagation()
                   onToggleFavorite()
                 }}
-                className="p-1.5 hover:bg-gray-100 rounded-lg transition-all duration-200 active:scale-95"
+                className="p-1.5 hover:bg-gray-100 rounded-lg transition-all duration-200 active:scale-95 flex-shrink-0"
               >
                 <Heart
                   className={`w-4 h-4 transition-colors ${
@@ -117,7 +121,8 @@ export function AuctionCardHorizontalVehicle({
 
       <div className="h-px bg-gray-100 mb-3"></div>
 
-      <div className="flex items-center justify-between">
+      {/* Footer com altura mínima fixa */}
+      <div className="flex items-center justify-between min-h-[28px]">
         <div className="flex flex-wrap gap-1.5">
           {tags && tags.map((tag, index) => (
             <span 

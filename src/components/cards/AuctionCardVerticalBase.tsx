@@ -65,15 +65,18 @@ export function AuctionCardVerticalBase({
         )}
       </div>
 
-      <div className="space-y-1">
-        {badge && (
-          <span className="inline-block text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">
-            {badge}
-          </span>
-        )}
+      <div className="space-y-3">
+        {/* Espaço reservado para badge - sempre ocupa espaço */}
+        <div className="min-h-[24px]">
+          {badge && (
+            <span className="inline-block text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">
+              {badge}
+            </span>
+          )}
+        </div>
 
         <div>
-          <div className="flex items-center gap-2 mb-0">
+          <div className="flex items-center gap-2 mb-2">
             <h3 className="text-lg md:text-base font-bold text-gray-900 flex-shrink-0">
               {titleLeft}
             </h3>
@@ -95,11 +98,14 @@ export function AuctionCardVerticalBase({
             )}
           </div>
           
-          <p className="text-sm md:text-xs text-gray-600 line-clamp-2 mb-2">
-            {subtitle}
-          </p>
+          {/* Subtítulo com altura fixa de 2 linhas */}
+          <div className="h-[32px] mb-3">
+            <p className="text-sm md:text-xs text-gray-600 line-clamp-2 leading-4">
+              {subtitle}
+            </p>
+          </div>
 
-          <div className="flex items-baseline gap-2 mb-3">
+          <div className="flex items-baseline gap-2 mb-4">
             <span className="text-xl md:text-lg font-bold text-gray-900">
               {price}
             </span>
@@ -113,7 +119,8 @@ export function AuctionCardVerticalBase({
 
         <div className="h-px bg-gray-100"></div>
 
-        <div className="flex items-center justify-between pt-1">
+        {/* Footer com altura mínima fixa */}
+        <div className="flex items-center justify-between pt-1 min-h-[32px]">
           <div className="flex flex-wrap gap-1.5">
             {tags && tags.slice(0, 2).map((tag, index) => (
               <span 
