@@ -40,7 +40,7 @@ export const SortPopover: React.FC<SortPopoverProps> = ({
           onClick={onClose}
         />
         
-        <div className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-50 p-6 shadow-2xl">
+        <div className="fixed bottom-0 left-0 right-0 bg-white rounded-t-xl z-50 p-6 shadow-2xl">
           <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-6" />
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">

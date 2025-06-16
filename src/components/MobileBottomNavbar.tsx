@@ -32,7 +32,7 @@ export const MobileBottomNavbar: React.FC = () => {
 
   return (
     <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
-      <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100 px-2 py-2">
+      <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-100 px-2 py-2">
         <div className="flex items-center space-x-1">
           {navItems.map((item) => {
             const Icon = item.icon;

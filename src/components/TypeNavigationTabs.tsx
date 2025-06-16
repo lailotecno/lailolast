@@ -142,7 +142,7 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
         onClick={() => handleTabClick(tab.route)}
         className={`
           px-3 py-2 text-sm font-medium transition-all duration-200 
-          whitespace-nowrap flex-shrink-0 rounded-lg
+          whitespace-nowrap flex-shrink-0 rounded-xl
           ${isActive
             ? 'bg-blue-600 text-white'
             : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
@@ -182,14 +182,14 @@ export const TypeNavigationTabs: React.FC<TypeNavigationTabsProps> = ({ category
           <div className="absolute top-0 right-0 bottom-0 w-24 flex items-center justify-end gap-1 bg-gradient-to-l from-white via-white/95 to-transparent z-20 pr-2">
             <button
               onClick={handleScrollLeft}
-              className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
+              className="w-8 h-8 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
               title="Rolar para a esquerda"
             >
               <ChevronLeft className="w-4 h-4 text-gray-600" />
             </button>
             <button
               onClick={handleScrollRight}
-              className="w-8 h-8 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
+              className="w-8 h-8 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow active:scale-95"
               title="Rolar para a direita"
             >
               <ChevronRight className="w-4 h-4 text-gray-600" />

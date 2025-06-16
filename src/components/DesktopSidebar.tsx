@@ -37,7 +37,7 @@ export const DesktopSidebar: React.FC = () => {
     return (
       <button
         onClick={() => handleNavigation(item.route)}
-        className={`w-12 h-12 flex items-center justify-center rounded-2xl transition-all duration-200 group ${
+        className={`w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-200 group ${
           isActive
             ? 'bg-blue-600 text-white shadow-lg'
             : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'
