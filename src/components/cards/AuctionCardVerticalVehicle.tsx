@@ -59,8 +59,8 @@ export function AuctionCardVerticalVehicle({
             <Heart
               className={`w-4 h-4 transition-colors ${
                 isFavorited
-                  ? 'fill-red-500 text-red-500'
-                  : 'text-gray-600 hover:text-red-500'
+                  ? 'fill-blue-500 text-blue-500'
+                  : 'text-gray-600 hover:text-blue-500'
               }`}
             />
           </button>
@@ -75,16 +75,23 @@ export function AuctionCardVerticalVehicle({
         )}
 
         <div>
-          <h3 className="text-lg md:text-base font-bold text-gray-900 truncate mb-2">
-            {brand} {model}
-          </h3>
+          <div className="flex items-center gap-1.5 mb-2">
+            <h3 className="text-lg md:text-base font-bold text-gray-900 flex-shrink-0">
+              {brand}
+            </h3>
+            <span className="text-lg md:text-base font-bold text-gray-900 truncate">
+              {model}
+            </span>
+          </div>
           
           <div className="flex items-center gap-2 text-sm md:text-xs text-gray-600 mb-3">
             <span className="font-medium">{color}</span>
             <span className="text-gray-300">•</span>
             <span className="font-medium">{year}</span>
             <span className="text-gray-300">•</span>
-            <span className="truncate">{cityState}</span>
+            <span className="truncate">{cityState.split('/')[0]}</span>
+            <span className="text-gray-300">•</span>
+            <span className="flex-shrink-0">{cityState.split('/')[1]}</span>
           </div>
 
           <div className="flex items-baseline gap-2 mb-4">

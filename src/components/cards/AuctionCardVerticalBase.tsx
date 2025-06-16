@@ -14,6 +14,7 @@ interface AuctionCardVerticalBaseProps {
   onLink?: () => void
   discount?: string
   isNew?: boolean
+  area?: string
 }
 
 export function AuctionCardVerticalBase({
@@ -30,6 +31,7 @@ export function AuctionCardVerticalBase({
   onLink,
   discount,
   isNew,
+  area,
 }: AuctionCardVerticalBaseProps) {
   return (
     <div className="group w-full bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg hover:border-gray-200 transition-all duration-300 p-4 cursor-pointer">
@@ -55,8 +57,8 @@ export function AuctionCardVerticalBase({
             <Heart
               className={`w-4 h-4 transition-colors ${
                 isFavorited
-                  ? 'fill-red-500 text-red-500'
-                  : 'text-gray-600 hover:text-red-500'
+                  ? 'fill-blue-500 text-blue-500'
+                  : 'text-gray-600 hover:text-blue-500'
               }`}
             />
           </button>
@@ -72,9 +74,17 @@ export function AuctionCardVerticalBase({
 
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <h3 className="text-lg md:text-base font-bold text-gray-900 truncate flex-1">
+            <h3 className="text-lg md:text-base font-bold text-gray-900 flex-shrink-0">
               {titleLeft}
             </h3>
+            {area && (
+              <>
+                <span className="text-gray-300 font-light">•</span>
+                <span className="text-sm md:text-xs text-gray-500 font-medium whitespace-nowrap">
+                  {area}
+                </span>
+              </>
+            )}
             {titleRight && (
               <>
                 <span className="text-gray-300 font-light">•</span>

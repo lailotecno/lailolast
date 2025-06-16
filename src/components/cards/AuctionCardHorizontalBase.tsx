@@ -14,6 +14,7 @@ interface AuctionCardHorizontalBaseProps {
   onLink?: () => void
   discount?: string
   isNew?: boolean
+  area?: string
 }
 
 export function AuctionCardHorizontalBase({
@@ -30,6 +31,7 @@ export function AuctionCardHorizontalBase({
   onLink,
   discount,
   isNew,
+  area,
 }: AuctionCardHorizontalBaseProps) {
   return (
     <div className="group w-full bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg hover:border-gray-200 transition-all duration-300 p-3 md:p-4 cursor-pointer">
@@ -57,9 +59,17 @@ export function AuctionCardHorizontalBase({
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5 mb-0.5">
-                <h3 className="text-[13px] md:text-sm font-bold text-gray-900 truncate leading-tight">
+                <h3 className="text-[13px] md:text-sm font-bold text-gray-900 leading-tight flex-shrink-0">
                   {titleLeft}
                 </h3>
+                {area && (
+                  <>
+                    <span className="text-gray-300 font-light text-[10px] md:text-xs">•</span>
+                    <span className="text-[10px] md:text-xs text-gray-500 font-medium whitespace-nowrap">
+                      {area}
+                    </span>
+                  </>
+                )}
                 {titleRight && (
                   <>
                     <span className="text-gray-300 font-light text-[10px] md:text-xs">•</span>
@@ -97,8 +107,8 @@ export function AuctionCardHorizontalBase({
                 <Heart
                   className={`w-4 h-4 transition-colors ${
                     isFavorited
-                      ? 'fill-red-500 text-red-500'
-                      : 'text-gray-400 hover:text-red-500'
+                      ? 'fill-blue-500 text-blue-500'
+                      : 'text-gray-400 hover:text-blue-500'
                   }`}
                 />
               </button>

@@ -62,6 +62,9 @@ export const AuctionCard: React.FC<AuctionCardProps> = ({ auction, viewMode }) =
   if (auction.origem) tags.push(auction.origem);
   if (auction.etapa) tags.push(auction.etapa);
 
+  // Mock area for properties (this would come from database)
+  const mockArea = isVehicle ? undefined : '85m²';
+
   // Common props for all card types
   const commonProps = {
     price: formatCurrency(auction.currentBid),
@@ -92,6 +95,7 @@ export const AuctionCard: React.FC<AuctionCardProps> = ({ auction, viewMode }) =
           {...commonProps}
           titleLeft={auction.title}
           subtitle={`${auction.description} – ${auction.location}`}
+          area={mockArea}
         />
       );
     }
@@ -113,6 +117,7 @@ export const AuctionCard: React.FC<AuctionCardProps> = ({ auction, viewMode }) =
           {...commonProps}
           titleLeft={auction.title}
           subtitle={`${auction.description} – ${auction.location}`}
+          area={mockArea}
         />
       );
     }

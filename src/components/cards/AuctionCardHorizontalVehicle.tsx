@@ -60,16 +60,23 @@ export function AuctionCardHorizontalVehicle({
 
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 min-w-0">
-              <h3 className="text-[13px] md:text-sm font-bold text-gray-900 truncate mb-0.5 leading-tight">
-                {brand} {model}
-              </h3>
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <h3 className="text-[13px] md:text-sm font-bold text-gray-900 leading-tight flex-shrink-0">
+                  {brand}
+                </h3>
+                <span className="text-[13px] md:text-sm font-bold text-gray-900 leading-tight truncate">
+                  {model}
+                </span>
+              </div>
               
               <div className="flex items-center gap-1.5 text-[11px] md:text-xs text-gray-600 mb-2">
                 <span className="font-medium">{color}</span>
                 <span className="text-gray-300">•</span>
                 <span className="font-medium">{year}</span>
                 <span className="text-gray-300">•</span>
-                <span className="truncate">{cityState}</span>
+                <span className="truncate">{cityState.split('/')[0]}</span>
+                <span className="text-gray-300">•</span>
+                <span className="flex-shrink-0">{cityState.split('/')[1]}</span>
               </div>
 
               <div className="flex items-baseline gap-1.5">
@@ -95,8 +102,8 @@ export function AuctionCardHorizontalVehicle({
                 <Heart
                   className={`w-4 h-4 transition-colors ${
                     isFavorited
-                      ? 'fill-red-500 text-red-500'
-                      : 'text-gray-400 hover:text-red-500'
+                      ? 'fill-blue-500 text-blue-500'
+                      : 'text-gray-400 hover:text-blue-500'
                   }`}
                 />
               </button>
