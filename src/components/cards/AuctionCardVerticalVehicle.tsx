@@ -90,11 +90,11 @@ export function AuctionCardVerticalVehicle({
           </div>
           
           <div className="flex items-center gap-2 text-sm md:text-xs text-gray-600 mb-2">
-            <span className="font-medium">{color}</span>
+            <span className="font-normal">{color}</span>
             <span className="text-gray-300">•</span>
-            <span className="font-medium">{year}</span>
+            <span className="font-normal">{year}</span>
             <span className="text-gray-300">•</span>
-            <span className="truncate">{formatCityState(cityState)}</span>
+            <span className="truncate font-normal">{formatCityState(cityState)}</span>
           </div>
 
           <div className="flex items-baseline gap-2 mb-3">
